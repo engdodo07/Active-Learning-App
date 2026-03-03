@@ -38,7 +38,10 @@
             </header>
 
             <section class="action-section">
-                <button class="btn-primary large-action">
+                <!-- Hidden file input for uploading mock JSON data -->
+                <input type="file" id="book-upload-input" accept=".json,.pdf" style="display: none;"
+                    onchange="app.handleFileUpload(event)">
+                <button class="btn-primary large-action" onclick="document.getElementById('book-upload-input').click()">
                     <i class="fas fa-plus-circle" style="margin-bottom: 8px; font-size: 2.5rem;"></i>
                     <span data-i18n="uploadBtn">Upload your new book (PDF)</span>
                 </button>

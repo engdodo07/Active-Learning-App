@@ -153,6 +153,76 @@ const app = {
         document.getElementById('resume-chapter-name').innerText = this.getMockData().metadata.chapter_title;
     },
 
+    handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Reset input so the same file can be selected again
+        event.target.value = '';
+
+        if (file.name.endsWith('.pdf')) {
+            alert(this.state.lang === 'ar' ? 'جاري محاكاة معالجة الـ PDF...' : 'Simulating PDF processing...');
+
+            // In a real app, this is where we send the PDF to an AI backend (like Claude/ChatGPT) 
+            // to extract the Structured JSON. For this demo, we'll wait a second and load the mock JSON.
+            setTimeout(() => {
+                alert(this.state.lang === 'ar' ? 'تم استخراج المحتوى بنجاح!' : 'Content extracted successfully!');
+                this.loadSimulatedNewBook();
+            }, 1500);
+
+        } else if (file.name.endsWith('.json')) {
+            // Feature to allow direct JSON upload testing
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const uploadedData = JSON.parse(e.target.result);
+                    if (uploadedData.metadata && uploadedData.structured_summary && uploadedData.quiz) {
+                        this.loadCustomJSONBook(uploadedData);
+                    } else {
+                        alert(this.state.lang === 'ar' ? 'ملف JSON غير صالح لهذه المنصة' : 'Invalid JSON file structure for this platform');
+                    }
+                } catch (err) {
+                    alert('Error parsing JSON');
+                }
+            };
+            reader.readAsText(file);
+        } else {
+            alert(this.state.lang === 'ar' ? 'يرجى رفع ملف PDF أو JSON' : 'Please upload a PDF or JSON file');
+        }
+    },
+
+    loadSimulatedNewBook() {
+        const t = I18N[this.state.lang];
+        const newBookTitle = this.state.lang === 'ar' ? "فصل جديد تم تحليله" : "Newly Analyzed Chapter";
+
+        // Add to recent books list
+        t.recentBooks.unshift({ title: newBookTitle, progress: 0 });
+        this.renderHome();
+
+        // Update the Resume Card to point to the new book
+        document.getElementById('resume-chapter-name').innerText = newBookTitle;
+
+        // Navigate to it
+        this.navigateTo('study-hub');
+    },
+
+    loadCustomJSONBook(uploadedData) {
+        // Overwrite the current mock data with the uploaded file
+        // Notice: This overrides the current language mock data for the demo
+        if (this.state.lang === 'en') {
+            Object.assign(MOCK_DATA_EN, uploadedData);
+        } else {
+            Object.assign(MOCK_DATA_AR, uploadedData);
+        }
+
+        const t = I18N[this.state.lang];
+        t.recentBooks.unshift({ title: uploadedData.metadata.chapter_title, progress: 0 });
+        this.renderHome();
+
+        document.getElementById('resume-chapter-name').innerText = uploadedData.metadata.chapter_title;
+        this.navigateTo('study-hub');
+    },
+
     navigateTo(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(`${screenId}-screen`).classList.add('active');
