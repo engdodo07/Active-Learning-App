@@ -103,16 +103,18 @@ const app = {
         currentQuizIndex: 0,
         score: 0,
         audioPlaying: false,
-        synthInterval: null
+        synthInterval: null,
+        activeBookData: null
     },
 
     init() {
+        this.state.activeBookData = this.getMockData();
         this.applyLanguage();
         this.setupAudio();
 
         // Setup text-to-speech for questions
         document.getElementById('listen-question-btn').addEventListener('click', () => {
-            const currentQ = this.getMockData().quiz[this.state.currentQuizIndex];
+            const currentQ = this.getActiveBookData().quiz[this.state.currentQuizIndex];
             this.speakText(currentQ.question);
         });
     },
@@ -121,10 +123,21 @@ const app = {
         return this.state.lang === 'en' ? MOCK_DATA_EN : MOCK_DATA_AR;
     },
 
+    getActiveBookData() {
+        return this.state.activeBookData || this.getMockData();
+    },
+
     toggleLanguage() {
         this.state.lang = this.state.lang === 'en' ? 'ar' : 'en';
         document.documentElement.lang = this.state.lang;
         document.documentElement.dir = this.state.lang === 'ar' ? 'rtl' : 'ltr';
+
+        // Reset to default mock data for the new language (if not looking at an uploaded file)
+        // If they uploaded a JSON, it currently overrides the language completely, which is expected for demo.
+        if (this.state.activeBookData === MOCK_DATA_EN || this.state.activeBookData === MOCK_DATA_AR) {
+            this.state.activeBookData = this.getMockData();
+        }
+
         this.stopAudio();
         this.applyLanguage();
 
@@ -149,8 +162,8 @@ const app = {
         this.renderHome();
 
         // We ensure study hub content follows new language as well on next visit, or immediate if active
-        document.getElementById('hub-chapter-title').innerText = this.getMockData().metadata.chapter_title;
-        document.getElementById('resume-chapter-name').innerText = this.getMockData().metadata.chapter_title;
+        document.getElementById('hub-chapter-title').innerText = this.getActiveBookData().metadata.chapter_title;
+        document.getElementById('resume-chapter-name').innerText = this.getActiveBookData().metadata.chapter_title;
     },
 
     handleFileUpload(event) {
@@ -207,13 +220,8 @@ const app = {
     },
 
     loadCustomJSONBook(uploadedData) {
-        // Overwrite the current mock data with the uploaded file
-        // Notice: This overrides the current language mock data for the demo
-        if (this.state.lang === 'en') {
-            Object.assign(MOCK_DATA_EN, uploadedData);
-        } else {
-            Object.assign(MOCK_DATA_AR, uploadedData);
-        }
+        // Set the active book data to the uploaded JSON
+        this.state.activeBookData = uploadedData;
 
         const t = I18N[this.state.lang];
         t.recentBooks.unshift({ title: uploadedData.metadata.chapter_title, progress: 0 });
@@ -250,7 +258,7 @@ const app = {
     },
 
     renderStudyHub() {
-        const data = this.getMockData();
+        const data = this.getActiveBookData();
         document.getElementById('hub-chapter-title').innerText = data.metadata.chapter_title;
         document.getElementById('resume-chapter-name').innerText = data.metadata.chapter_title;
 
@@ -287,7 +295,7 @@ const app = {
                 btn.innerHTML = '<i class="fas fa-pause"></i>';
 
                 if ('speechSynthesis' in window) {
-                    const data = this.getMockData();
+                    const data = this.getActiveBookData();
                     const utterance = new SpeechSynthesisUtterance(data.audio_narrative);
                     utterance.lang = I18N[this.state.lang].speechLang;
                     utterance.rate = 0.9;
@@ -345,7 +353,7 @@ const app = {
     },
 
     renderQuestion() {
-        const data = this.getMockData();
+        const data = this.getActiveBookData();
         const t = I18N[this.state.lang];
         const qIndex = this.state.currentQuizIndex;
         const total = data.quiz.length;
@@ -428,7 +436,7 @@ const app = {
 
         document.getElementById('next-question-btn').style.display = 'flex';
 
-        const total = this.getMockData().quiz.length;
+        const total = this.getActiveBookData().quiz.length;
         const progressPercent = ((this.state.currentQuizIndex + 1) / total) * 100;
         document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
     },
