@@ -1,0 +1,18 @@
+{
+  "name": "Interactive Learning Hub",
+  "short_name": "LearnHub",
+  "description": "An interactive AI learning module supporting TTS and interactive quizzes.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#2563EB",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

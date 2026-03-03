@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interactive Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <link rel="apple-touch-icon" href="icon.svg">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1. The Home Screen -->
+        <div id="home-screen" class="screen active">
+            <header class="home-header">
+                <div class="user-greeting">
+                    <h1 data-i18n="greetingTitle">Welcome, Champion! 👋</h1>
+                    <p data-i18n="greetingSub">Ready for a new learning journey?</p>
+                </div>
+                <!-- Language Toggle + Avatar -->
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <button class="icon-btn" onclick="app.toggleLanguage()" title="Change Language"
+                        style="color: var(--primary);">
+                        <i class="fas fa-language" style="font-size: 1.8rem;"></i>
+                    </button>
+                    <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                </div>
+            </header>
+
+            <section class="action-section">
+                <button class="btn-primary large-action">
+                    <i class="fas fa-plus-circle" style="margin-bottom: 8px; font-size: 2.5rem;"></i>
+                    <span data-i18n="uploadBtn">Upload your new book (PDF)</span>
+                </button>
+            </section>
+
+            <section class="resume-section">
+                <div class="resume-card" onclick="app.navigateTo('study-hub')">
+                    <div class="card-icon"><i class="fas fa-book-reader"></i></div>
+                    <div class="card-content">
+                        <h3 data-i18n="resumeTitle">Resume where you left off</h3>
+                        <p id="resume-chapter-name">AI in Education</p>
+                    </div>
+                    <i class="fas fa-chevron-right directional-icon" style="opacity: 0.6;"></i>
+                </div>
+            </section>
+
+            <section class="recent-books-section">
+                <h2 data-i18n="libraryTitle">Your Library</h2>
+                <div class="recent-list" id="recent-list">
+                    <!-- Dynamic List -->
+                </div>
+            </section>
+        </div>
+
+        <!-- 2. The Study Hub -->
+        <div id="study-hub-screen" class="screen">
+            <header class="hub-header">
+                <button class="icon-btn back-btn" onclick="app.navigateTo('home')">
+                    <i class="fas fa-arrow-left directional-icon"></i>
+                </button>
+                <h2 id="hub-chapter-title">Chapter Name</h2>
+            </header>
+
+            <div class="study-content">
+                <div class="audio-player-card">
+                    <button class="play-btn" id="play-summary-btn"><i class="fas fa-play directional-icon"></i></button>
+                    <div class="player-info">
+                        <h4 data-i18n="audioSummary">Audio Summary</h4>
+                        <div class="timeline">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-area" id="summary-content">
+                    <!-- Markdown content goes here -->
+                </div>
+            </div>
+
+            <div class="fab-container">
+                <button class="fab-btn" onclick="app.startQuiz()">
+                    <span data-i18n="startQuiz">Start Quiz Now</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. The Quiz Interface -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <button class="icon-btn" onclick="app.navigateTo('study-hub')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="quiz-progress"></div>
+                </div>
+                <span id="quiz-counter">1 / 5</span>
+            </div>
+
+            <div class="quiz-body">
+                <div class="question-box">
+                    <h2 id="quiz-question-text">Question text goes here?</h2>
+                    <button class="icon-btn audio-question-btn" id="listen-question-btn" title="Listen"><i
+                            class="fas fa-volume-up"></i></button>
+                </div>
+
+                <div class="options-container" id="quiz-options">
+                    <!-- Options buttons -->
+                </div>
+
+                <div class="next-btn-container">
+                    <button id="next-question-btn" class="btn-primary"
+                        style="display: none; width: 100%; justify-content: space-between;">
+                        <span data-i18n="nextQuestion">Next Question</span>
+                        <i class="fas fa-arrow-right directional-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Modal -->
+            <div class="feedback-modal" id="feedback-modal">
+                <div class="feedback-content">
+                    <div class="feedback-icon" id="feedback-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="feedback-text">
+                        <h3 id="feedback-title">Excellent answer!</h3>
+                        <p id="feedback-explanation">Explanation goes here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
