@@ -316,9 +316,71 @@ const app = {
         }
     },
 
-    // ── GEMINI API CALL ───────────────────────────────────
+    // ── GEMINI API CALL WITH AUTO-RETRY & MODEL FALLBACK ──
     async callGeminiAPI(apiKey, prompt) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const models = [
+            "gemini-2.0-flash",
+            "gemini-2.0-flash-lite",
+            "gemini-1.5-flash"
+        ];
+
+        for (const model of models) {
+            try {
+                this.updateOverlaySub(
+                    this.state.lang === "ar"
+                        ? `جاري التحليل باستخدام ${model}...`
+                        : `Analyzing with ${model}...`
+                );
+
+                const result = await this._callModel(apiKey, model, prompt);
+                return result; // Success — return immediately
+
+            } catch (err) {
+                const isQuota = err.message.includes("quota") || err.message.includes("429") || err.message.includes("RESOURCE_EXHAUSTED");
+
+                if (isQuota) {
+                    // Extract retry delay from error if available
+                    const retryMatch = err.message.match(/retry in (\d+)/i);
+                    const waitSec = retryMatch ? parseInt(retryMatch[1]) + 5 : 30;
+
+                    // If this is the last model, wait and try it one more time
+                    if (model === models[models.length - 1]) {
+                        this.updateOverlayText(
+                            this.state.lang === "ar"
+                                ? `⏳ حد الاستخدام — إعادة المحاولة خلال ${waitSec} ثانية...`
+                                : `⏳ Rate limited — retrying in ${waitSec}s...`,
+                            this.state.lang === "ar" ? "انتظر قليلاً..." : "Please wait..."
+                        );
+
+                        // Countdown timer on overlay
+                        let remaining = waitSec;
+                        const countdownInterval = setInterval(() => {
+                            remaining--;
+                            this.updateOverlaySub(
+                                this.state.lang === "ar"
+                                    ? `إعادة المحاولة خلال ${remaining} ثانية...`
+                                    : `Retrying in ${remaining}s...`
+                            );
+                        }, 1000);
+
+                        await new Promise(resolve => setTimeout(resolve, waitSec * 1000));
+                        clearInterval(countdownInterval);
+
+                        // Final retry
+                        return await this._callModel(apiKey, models[0], prompt);
+                    }
+                    // Otherwise try next model
+                    console.warn(`${model} quota exceeded, trying next model...`);
+                    continue;
+                }
+                throw err; // Non-quota error — bubble up
+            }
+        }
+        throw new Error("All AI models exhausted. Please try again later.");
+    },
+
+    async _callModel(apiKey, model, prompt) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
         const response = await fetch(url, {
             method: "POST",
@@ -336,20 +398,18 @@ const app = {
         if (!response.ok) {
             const errData = await response.json().catch(() => ({}));
             const errMsg = errData?.error?.message || response.statusText;
-            throw new Error("Gemini API error: " + errMsg);
+            throw new Error(errMsg);
         }
 
         const data = await response.json();
         const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!text) throw new Error("Empty response from Gemini API");
+        if (!text) throw new Error("Empty response from AI");
 
-        // Parse JSON — strip markdown code fences if present
         const cleanJson = text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
         const parsed = JSON.parse(cleanJson);
 
-        // Validate structure
         if (!parsed.metadata || !parsed.structured_summary || !parsed.quiz || !parsed.audio_narrative) {
-            throw new Error("AI returned incomplete data structure");
+            throw new Error("AI returned incomplete data");
         }
         return parsed;
     },
