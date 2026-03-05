@@ -1,61 +1,67 @@
+// ============================================================
+// MOCK DATA — used as default content when no file is uploaded
+// ============================================================
 const MOCK_DATA_AR = {
-    "metadata": { "chapter_title": "الذكاء الاصطناعي في التعليم", "key_concepts": ["تعلم الآلة", "البيانات الضخمة", "التخصيص"] },
-    "structured_summary": [
-        { "topic": "مقدمة ملهمة", "content": "الذكاء الاصطناعي هو قدرة الآلات والأنظمة على محاكاة القدرات الذهنية للبشر ونماذج عملها، مثل القدرة على التعلم والاستنتاج ورد الفعل على أوضاع لم تبرمج في الآلة للارتقاء بالتجربة التعليمية.", "has_table": false },
-        { "topic": "تطبيقات التعلم الآلي", "content": "| التطبيق | الفائدة |\n|---|---|\n| التوصيات الذكية | زيادة تفاعل الطلاب بمحتوى مخصص |\n| التصحيح الآلي | توفير وقت المعلم للمهام الإبداعية |\n| المتابعة التحليلية | تحديد نقاط الضعف مبكراً |", "has_table": true }
+    metadata: { chapter_title: "الذكاء الاصطناعي في التعليم", key_concepts: ["تعلم الآلة", "البيانات الضخمة", "التخصيص"] },
+    structured_summary: [
+        { topic: "مقدمة ملهمة", content: "الذكاء الاصطناعي هو قدرة الآلات والأنظمة على محاكاة القدرات الذهنية للبشر، مثل القدرة على التعلم والاستنتاج، للارتقاء بالتجربة التعليمية.", has_table: false },
+        { topic: "تطبيقات التعلم الآلي", content: "| التطبيق | الفائدة |\n|---|---|\n| التوصيات الذكية | زيادة تفاعل الطلاب بمحتوى مخصص |\n| التصحيح الآلي | توفير وقت المعلم للمهام الإبداعية |\n| المتابعة التحليلية | تحديد نقاط الضعف مبكراً |", has_table: true }
     ],
-    "quiz": [
+    quiz: [
         {
-            "question": "ما هو الهدف الرئيسي من استخدام الذكاء الاصطناعي في التعليم بشكل فعال؟",
-            "options": { "A": "تقليل عدد المعلمين الأكفاء بالمدارس", "B": "تخصيص تجربة التعلم لكل طالب", "C": "إلغاء المدارس التقليدية والكتب", "D": "تسريع وتيرة الامتحانات اليومية" },
-            "correct_option": "B",
-            "explanation": "يساعد الذكاء الاصطناعي في تحليل بيانات الطلاب وتقديم محتوى مخصص يناسب قدرات وسرعة كل طالب، وبالتالي (B) هي الإجابة الصحيحة. باقي الخيارات لا تمثل هدفاً تربوياً سليماً."
+            question: "ما هو الهدف الرئيسي من استخدام الذكاء الاصطناعي في التعليم بشكل فعال؟",
+            options: { A: "تقليل عدد المعلمين بالمدارس", B: "تخصيص تجربة التعلم لكل طالب", C: "إلغاء المدارس التقليدية", D: "تسريع وتيرة الامتحانات اليومية" },
+            correct_option: "B",
+            explanation: "الذكاء الاصطناعي يساعد في تقديم محتوى مخصص يناسب كل طالب، لذا (B) هي الإجابة الصحيحة. باقي الخيارات لا تمثل هدفاً تربوياً سليماً."
         },
         {
-            "question": "أي من الأدوات التالية لا يعتبر تطبيقاً للذكاء الاصطناعي في الفصول الدراسية؟",
-            "options": { "A": "ألواح الكتابة العادية الخشبية", "B": "أنظمة التصحيح التلقائي الدقيقة", "C": "روبوتات المحادثة للإجابة فوراً", "D": "منصات التعلم التكيفي الذكية" },
-            "correct_option": "A",
-            "explanation": "ألواح الكتابة العادية هي أداة تقليدية لا تحتوي على أي خوارزميات أو تعلم آلة، على عكس باقي الخيارات التي تعتمد بشكل أساسي والمباشر على تقنيات الذكاء الاصطناعي الحديثة."
+            question: "أي من الأدوات التالية لا يعتبر تطبيقاً للذكاء الاصطناعي في الفصول الدراسية؟",
+            options: { A: "ألواح الكتابة العادية الخشبية", B: "أنظمة التصحيح التلقائي", C: "روبوتات المحادثة", D: "منصات التعلم التكيفي" },
+            correct_option: "A",
+            explanation: "ألواح الكتابة التقليدية لا تحتوي على أي خوارزميات، على عكس باقي الخيارات التي تعتمد على الذكاء الاصطناعي."
         },
         {
-            "question": "كيف تساهم 'البيانات الضخمة' (Big Data) في تحسين سير العملية التعليمية؟",
-            "options": { "A": "عن طريق تخزين ملايين الكتب فقط", "B": "عبر تتبع وتحليل أنماط تعلم الطلاب", "C": "من خلال استهلاك مساحة تخزين أكبر للمدارس", "D": "لا تساهم في التعليم بأي شكل ملحوظ" },
-            "correct_option": "B",
-            "explanation": "تحليل أنماط تعلم الطلاب عن طريق البيانات الضخمة يمكن المعلمين والأنظمة من توجيه الطلاب وإعطائهم المحتوى المتخصص وتوقع التحديات التي قد يواجهونها قبل حدوثها."
+            question: "كيف تساهم البيانات الضخمة في تحسين العملية التعليمية؟",
+            options: { A: "عن طريق تخزين ملايين الكتب فقط", B: "عبر تتبع وتحليل أنماط تعلم الطلاب", C: "من خلال استهلاك مساحة تخزين أكبر", D: "لا تساهم في التعليم" },
+            correct_option: "B",
+            explanation: "تحليل أنماط الطلاب يمكّن الأنظمة من توجيههم وتقديم محتوى متخصص يتوقع تحدياتهم."
         }
     ],
-    "audio_narrative": "أهلاً بك يا بطل في فصل الذكاء الاصطناعي في التعليم. في هذا الفصل سنتعرف على كيفية إحداث ثورة في طرق التعلم، مثل التخصيص التلقائي للمحتوى، واستخدام البيانات لتحليل أداء الطلاب."
+    audio_narrative: "أهلاً بك يا بطل في فصل الذكاء الاصطناعي في التعليم. سنتعرف على كيفية إحداث ثورة في طرق التعلم، من خلال التخصيص التلقائي للمحتوى واستخدام البيانات لتحليل أداء الطلاب وتحسين تجربتهم."
 };
 
 const MOCK_DATA_EN = {
-    "metadata": { "chapter_title": "AI in Education", "key_concepts": ["Machine Learning", "Big Data", "Personalization"] },
-    "structured_summary": [
-        { "topic": "Inspiring Introduction", "content": "Artificial Intelligence is the simulation of human intelligence processes by machines, especially computer systems, to elevate the educational experience.", "has_table": false },
-        { "topic": "Machine Learning Apps", "content": "| Application | Benefit |\n|---|---|\n| Smart Recommendations | Increase engagement with tailored content |\n| Automated Grading | Save teacher time for creative tasks |\n| Analytical Tracking | Identify weaknesses early |", "has_table": true }
+    metadata: { chapter_title: "AI in Education", key_concepts: ["Machine Learning", "Big Data", "Personalization"] },
+    structured_summary: [
+        { topic: "Inspiring Introduction", content: "Artificial Intelligence is the simulation of human intelligence processes by machines and computer systems, used to elevate the educational experience.", has_table: false },
+        { topic: "Machine Learning Applications", content: "| Application | Benefit |\n|---|---|\n| Smart Recommendations | Increase engagement with tailored content |\n| Automated Grading | Save teacher time for creative tasks |\n| Analytical Tracking | Identify weaknesses early |", has_table: true }
     ],
-    "quiz": [
+    quiz: [
         {
-            "question": "What is the primary goal of effectively using AI in education?",
-            "options": { "A": "Reducing competent teachers in schools", "B": "Personalizing the learning experience", "C": "Abolishing traditional schools", "D": "Accelerating daily exams" },
-            "correct_option": "B",
-            "explanation": "AI helps analyze student data to provide tailored content that fits each student's abilities. Thus, (B) is the correct answer. The other options do not represent sound educational goals."
+            question: "What is the primary goal of effectively using AI in education?",
+            options: { A: "Reducing teachers in schools", B: "Personalizing the learning experience", C: "Abolishing traditional schools", D: "Accelerating daily exams" },
+            correct_option: "B",
+            explanation: "AI helps analyze student data to provide tailored content. Thus (B) is correct. The other options do not represent sound educational goals."
         },
         {
-            "question": "Which of the following is NOT an application of AI in classrooms?",
-            "options": { "A": "Standard wooden whiteboards", "B": "Accurate auto-grading systems", "C": "Chatbots for instant answers", "D": "Smart adaptive learning platforms" },
-            "correct_option": "A",
-            "explanation": "Standard whiteboards are traditional tools lacking algorithms or machine learning, unlike the other options which fundamentally rely on modern AI techniques."
+            question: "Which of the following is NOT an application of AI in classrooms?",
+            options: { A: "Standard wooden whiteboards", B: "Accurate auto-grading systems", C: "Chatbots for instant answers", D: "Smart adaptive learning platforms" },
+            correct_option: "A",
+            explanation: "Standard whiteboards are traditional tools with no algorithms or machine learning, unlike the other options."
         },
         {
-            "question": "How does 'Big Data' contribute to improving the educational process?",
-            "options": { "A": "By just storing millions of books", "B": "Through tracking and analyzing student learning patterns", "C": "By consuming more school server storage", "D": "It doesn't contribute noticeably to education" },
-            "correct_option": "B",
-            "explanation": "Analyzing student patterns via Big Data enables teachers and systems to guide students, provide specialized content, and anticipate challenges early."
+            question: "How does Big Data contribute to improving education?",
+            options: { A: "By storing millions of books", B: "By tracking and analyzing student learning patterns", C: "By consuming more storage", D: "It doesn't contribute to education" },
+            correct_option: "B",
+            explanation: "Analyzing student patterns enables systems to guide students, provide specialized content, and anticipate challenges."
         }
     ],
-    "audio_narrative": "Welcome, Champion, to the AI in Education chapter. In this chapter, we will learn how to revolutionize learning methods, such as automatic content personalization and data usage to analyze student performance."
+    audio_narrative: "Welcome, Champion, to the AI in Education chapter. We will explore how to revolutionize learning through automatic content personalization and data-driven analysis of student performance to create a better educational experience."
 };
 
+// ============================================================
+// i18n STRINGS — UI labels per language
+// ============================================================
 const I18N = {
     en: {
         greetingTitle: "Welcome, Champion! 👋",
@@ -67,7 +73,7 @@ const I18N = {
         audioSummary: "Audio Summary",
         startQuiz: "Start Quiz Now",
         nextQuestion: "Next Question",
-        speechLang: 'en-US',
+        speechLang: "en-US",
         excellent: "Excellent answer!",
         goodTry: "Good try, the correct answer is",
         completedMsg: "Quiz finished, Champion! Your score: ",
@@ -86,7 +92,7 @@ const I18N = {
         audioSummary: "الملخص الصوتي",
         startQuiz: "ابدأ الاختبار الآن",
         nextQuestion: "السؤال التالي",
-        speechLang: 'ar-SA',
+        speechLang: "ar-SA",
         excellent: "إجابة ممتازة!",
         goodTry: "محاولة جيدة، الإجابة الصحيحة هي",
         completedMsg: "انتهى الاختبار يا بطل! نتيجتك: ",
@@ -97,362 +103,392 @@ const I18N = {
     }
 };
 
+// ============================================================
+// MAIN APP OBJECT
+// ============================================================
 const app = {
+    // --- STATE ---
     state: {
-        lang: 'en', // default to English
+        lang: "en",             // Current UI language
+        activeBook: null,       // The currently loaded book data object
         currentQuizIndex: 0,
         score: 0,
         audioPlaying: false,
         synthInterval: null,
-        activeBookData: null
+        utterance: null         // Keep reference to cancel cleanly
     },
 
+    // ── INIT ──────────────────────────────────────────────────
     init() {
-        this.state.activeBookData = this.getMockData();
+        // Set first book as the default active book
+        this.state.activeBook = MOCK_DATA_EN;
         this.applyLanguage();
-        this.setupAudio();
-
-        // Setup text-to-speech for questions
-        document.getElementById('listen-question-btn').addEventListener('click', () => {
-            const currentQ = this.getActiveBookData().quiz[this.state.currentQuizIndex];
-            this.speakText(currentQ.question);
+        // Wire up the listen-to-question button
+        document.getElementById("listen-question-btn").addEventListener("click", () => {
+            const q = this.state.activeBook.quiz[this.state.currentQuizIndex];
+            if (q) this.speakText(q.question);
         });
+        // Wire up play button
+        document.getElementById("play-summary-btn").addEventListener("click", () => this.toggleAudio());
     },
 
-    getMockData() {
-        return this.state.lang === 'en' ? MOCK_DATA_EN : MOCK_DATA_AR;
-    },
-
-    getActiveBookData() {
-        return this.state.activeBookData || this.getMockData();
-    },
-
+    // ── LANGUAGE ──────────────────────────────────────────────
     toggleLanguage() {
-        this.state.lang = this.state.lang === 'en' ? 'ar' : 'en';
+        this.state.lang = this.state.lang === "en" ? "ar" : "en";
         document.documentElement.lang = this.state.lang;
-        document.documentElement.dir = this.state.lang === 'ar' ? 'rtl' : 'ltr';
-
-        // Reset to default mock data for the new language (if not looking at an uploaded file)
-        // If they uploaded a JSON, it currently overrides the language completely, which is expected for demo.
-        if (this.state.activeBookData === MOCK_DATA_EN || this.state.activeBookData === MOCK_DATA_AR) {
-            this.state.activeBookData = this.getMockData();
-        }
-
+        document.documentElement.dir = this.state.lang === "ar" ? "rtl" : "ltr";
         this.stopAudio();
-        this.applyLanguage();
-
-        // Retrigger content rendering if inside study hub or quiz
-        if (document.getElementById('study-hub-screen').classList.contains('active')) {
-            this.renderStudyHub();
-        } else if (document.getElementById('quiz-screen').classList.contains('active')) {
-            this.renderQuestion();
+        // If the active book is one of the built-in mock books, switch language variant
+        if (this.state.activeBook === MOCK_DATA_EN || this.state.activeBook === MOCK_DATA_AR) {
+            this.state.activeBook = this.state.lang === "en" ? MOCK_DATA_EN : MOCK_DATA_AR;
         }
+        this.applyLanguage();
+        // Re-render the current screen if it needs it
+        if (document.getElementById("study-hub-screen").classList.contains("active")) this.renderStudyHub();
+        if (document.getElementById("quiz-screen").classList.contains("active")) this.renderQuestion();
     },
 
     applyLanguage() {
         const t = I18N[this.state.lang];
-
-        // Update Static Texts
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (t[key]) el.innerText = t[key];
+        // Update all static labels
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (t[key] !== undefined) el.innerText = t[key];
         });
-
-        // Update Dynamic Home Screen Parts
         this.renderHome();
-
-        // We ensure study hub content follows new language as well on next visit, or immediate if active
-        document.getElementById('hub-chapter-title').innerText = this.getActiveBookData().metadata.chapter_title;
-        document.getElementById('resume-chapter-name').innerText = this.getActiveBookData().metadata.chapter_title;
-    },
-
-    handleFileUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        // Reset input so the same file can be selected again
-        event.target.value = '';
-
-        if (file.name.endsWith('.pdf')) {
-            alert(this.state.lang === 'ar' ? 'جاري محاكاة معالجة الـ PDF...' : 'Simulating PDF processing...');
-
-            // In a real app, this is where we send the PDF to an AI backend (like Claude/ChatGPT) 
-            // to extract the Structured JSON. For this demo, we'll wait a second and load the mock JSON.
-            setTimeout(() => {
-                alert(this.state.lang === 'ar' ? 'تم استخراج المحتوى بنجاح!' : 'Content extracted successfully!');
-                this.loadSimulatedNewBook();
-            }, 1500);
-
-        } else if (file.name.endsWith('.json')) {
-            // Feature to allow direct JSON upload testing
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const uploadedData = JSON.parse(e.target.result);
-                    if (uploadedData.metadata && uploadedData.structured_summary && uploadedData.quiz) {
-                        this.loadCustomJSONBook(uploadedData);
-                    } else {
-                        alert(this.state.lang === 'ar' ? 'ملف JSON غير صالح لهذه المنصة' : 'Invalid JSON file structure for this platform');
-                    }
-                } catch (err) {
-                    alert('Error parsing JSON');
-                }
-            };
-            reader.readAsText(file);
-        } else {
-            alert(this.state.lang === 'ar' ? 'يرجى رفع ملف PDF أو JSON' : 'Please upload a PDF or JSON file');
+        // Update dynamic chapter title references
+        if (this.state.activeBook) {
+            document.getElementById("hub-chapter-title").innerText = this.state.activeBook.metadata.chapter_title;
+            document.getElementById("resume-chapter-name").innerText = this.state.activeBook.metadata.chapter_title;
         }
     },
 
-    loadSimulatedNewBook() {
-        const t = I18N[this.state.lang];
-        const newBookTitle = this.state.lang === 'ar' ? "فصل جديد تم تحليله" : "Newly Analyzed Chapter";
-
-        // Add to recent books list
-        t.recentBooks.unshift({ title: newBookTitle, progress: 0 });
-        this.renderHome();
-
-        // Update the Resume Card to point to the new book
-        document.getElementById('resume-chapter-name').innerText = newBookTitle;
-
-        // Navigate to it
-        this.navigateTo('study-hub');
-    },
-
-    loadCustomJSONBook(uploadedData) {
-        // Set the active book data to the uploaded JSON
-        this.state.activeBookData = uploadedData;
-
-        const t = I18N[this.state.lang];
-        t.recentBooks.unshift({ title: uploadedData.metadata.chapter_title, progress: 0 });
-        this.renderHome();
-
-        document.getElementById('resume-chapter-name').innerText = uploadedData.metadata.chapter_title;
-        this.navigateTo('study-hub');
-    },
-
+    // ── NAVIGATION ────────────────────────────────────────────
     navigateTo(screenId) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(`${screenId}-screen`).classList.add('active');
-        window.scrollTo(0, 0);
         this.stopAudio();
-
-        if (screenId === 'study-hub') this.renderStudyHub();
+        document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+        document.getElementById(`${screenId}-screen`).classList.add("active");
+        window.scrollTo(0, 0);
+        if (screenId === "study-hub") this.renderStudyHub();
     },
 
+    // ── HOME SCREEN ───────────────────────────────────────────
     renderHome() {
         const t = I18N[this.state.lang];
-        const list = document.getElementById('recent-list');
+        const list = document.getElementById("recent-list");
         list.innerHTML = t.recentBooks.map(book => `
             <div class="book-item">
                 <div class="book-icon"><i class="fas fa-file-pdf"></i></div>
                 <div class="book-details">
                     <h4>${book.title}</h4>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: ${book.progress}%"></div>
+                        <div class="progress-fill" style="width:${book.progress}%"></div>
                     </div>
                     <span class="progress-text">${book.progress}${t.progressSub}</span>
                 </div>
             </div>
-        `).join('');
+        `).join("");
     },
 
-    renderStudyHub() {
-        const data = this.getActiveBookData();
-        document.getElementById('hub-chapter-title').innerText = data.metadata.chapter_title;
-        document.getElementById('resume-chapter-name').innerText = data.metadata.chapter_title;
+    // ── FILE UPLOAD ───────────────────────────────────────────
+    handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        event.target.value = ""; // allow re-upload of same file
 
-        const summaryDiv = document.getElementById('summary-content');
-        let html = '';
+        if (file.name.toLowerCase().endsWith(".json")) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.metadata && data.structured_summary && data.quiz && data.audio_narrative) {
+                        this.loadBook(data, data.metadata.chapter_title);
+                    } else {
+                        this.showAlert(this.state.lang === "ar"
+                            ? "❌ ملف JSON لا يحتوي على الحقول المطلوبة (metadata, structured_summary, quiz, audio_narrative)"
+                            : "❌ JSON file is missing required fields (metadata, structured_summary, quiz, audio_narrative)");
+                    }
+                } catch (err) {
+                    this.showAlert("❌ Error reading JSON: " + err.message);
+                }
+            };
+            reader.readAsText(file);
+
+        } else if (file.name.toLowerCase().endsWith(".pdf")) {
+            // Simulated PDF processing — in a real app this calls an AI backend
+            this.showProcessingOverlay(true);
+            setTimeout(() => {
+                this.showProcessingOverlay(false);
+                // For demo, load the current language mock as the "result"
+                const simulatedResult = this.state.lang === "ar" ? MOCK_DATA_AR : MOCK_DATA_EN;
+                this.loadBook(simulatedResult, file.name.replace(".pdf", ""));
+            }, 2000);
+
+        } else {
+            this.showAlert(this.state.lang === "ar"
+                ? "يرجى رفع ملف PDF أو JSON"
+                : "Please upload a PDF or JSON file");
+        }
+    },
+
+    loadBook(data, titleOverride) {
+        // ★ THIS is the single source of truth for switching books ★
+        this.state.activeBook = data;
+        this.state.currentQuizIndex = 0;
+        this.state.score = 0;
+
+        const t = I18N[this.state.lang];
+        const title = titleOverride || data.metadata.chapter_title;
+        t.recentBooks.unshift({ title, progress: 0 });
+
+        this.renderHome();
+        document.getElementById("resume-chapter-name").innerText = title;
+        this.navigateTo("study-hub");
+    },
+
+    showProcessingOverlay(show) {
+        let overlay = document.getElementById("processing-overlay");
+        if (show) {
+            if (!overlay) {
+                overlay = document.createElement("div");
+                overlay.id = "processing-overlay";
+                overlay.innerHTML = `
+                    <div class="overlay-box">
+                        <div class="spinner"></div>
+                        <p>${this.state.lang === "ar" ? "جاري تحليل الملف..." : "Analyzing file..."}</p>
+                    </div>`;
+                overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;";
+                overlay.querySelector(".overlay-box").style.cssText = "background:white;border-radius:20px;padding:40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;font-family:'Cairo',sans-serif;font-size:1.1rem;font-weight:700;";
+                overlay.querySelector(".spinner").style.cssText = "width:48px;height:48px;border:5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin 0.8s linear infinite;";
+                if (!document.getElementById("spin-style")) {
+                    const style = document.createElement("style");
+                    style.id = "spin-style";
+                    style.textContent = "@keyframes spin{to{transform:rotate(360deg)}}";
+                    document.head.appendChild(style);
+                }
+                document.body.appendChild(overlay);
+            }
+        } else {
+            if (overlay) overlay.remove();
+        }
+    },
+
+    showAlert(msg) {
+        alert(msg);
+    },
+
+    // ── STUDY HUB ─────────────────────────────────────────────
+    renderStudyHub() {
+        const data = this.state.activeBook;
+        if (!data) return;
+
+        document.getElementById("hub-chapter-title").innerText = data.metadata.chapter_title;
+
+        const summaryDiv = document.getElementById("summary-content");
+        let html = "";
         data.structured_summary.forEach(item => {
             html += `<h3>${item.topic}</h3>`;
-            if (item.has_table) {
-                html += marked.parse(item.content);
-            } else {
-                html += `<p>${item.content}</p>`;
-            }
+            html += item.has_table ? marked.parse(item.content) : `<p>${item.content}</p>`;
         });
         summaryDiv.innerHTML = html;
+
+        // Reset audio player visual state for new book
+        const timelineProgress = document.querySelector(".timeline .progress");
+        if (timelineProgress) timelineProgress.style.width = "0%";
+        const playBtn = document.getElementById("play-summary-btn");
+        if (playBtn) playBtn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
+    },
+
+    // ── AUDIO ─────────────────────────────────────────────────
+    toggleAudio() {
+        if (this.state.audioPlaying) {
+            this.stopAudio();
+            return;
+        }
+
+        const data = this.state.activeBook;
+        if (!data || !data.audio_narrative) return;
+
+        this.state.audioPlaying = true;
+        const btn = document.getElementById("play-summary-btn");
+        const progress = document.querySelector(".timeline .progress");
+        btn.innerHTML = '<i class="fas fa-pause"></i>';
+
+        if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel(); // Cancel any previous
+
+            const utterance = new SpeechSynthesisUtterance(data.audio_narrative);
+            utterance.lang = I18N[this.state.lang].speechLang;
+            utterance.rate = 0.9;
+            this.state.utterance = utterance;
+
+            utterance.onend = () => {
+                this.stopAudio();
+                if (progress) progress.style.width = "100%";
+            };
+            utterance.onerror = () => this.stopAudio();
+
+            window.speechSynthesis.speak(utterance);
+
+            // Visual progress bar simulation
+            let w = 0;
+            const totalMs = data.audio_narrative.length * 65; // rough estimate
+            const step = 100 / (totalMs / 100);
+            this.state.synthInterval = setInterval(() => {
+                w = Math.min(w + step, 99); // cap at 99 until onend fires
+                if (progress) progress.style.width = w + "%";
+            }, 100);
+
+        } else {
+            // Fallback: just animate bar without TTS
+            let w = 0;
+            this.state.synthInterval = setInterval(() => {
+                w += 1.5;
+                if (progress) progress.style.width = w + "%";
+                if (w >= 100) this.stopAudio();
+            }, 100);
+        }
     },
 
     stopAudio() {
         this.state.audioPlaying = false;
-        const btn = document.getElementById('play-summary-btn');
-        btn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
         clearInterval(this.state.synthInterval);
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-        }
-    },
-
-    setupAudio() {
-        const btn = document.getElementById('play-summary-btn');
-        const progress = document.querySelector('.timeline .progress');
-
-        btn.addEventListener('click', () => {
-            if (!this.state.audioPlaying) {
-                this.state.audioPlaying = true;
-                btn.innerHTML = '<i class="fas fa-pause"></i>';
-
-                if ('speechSynthesis' in window) {
-                    const data = this.getActiveBookData();
-                    const utterance = new SpeechSynthesisUtterance(data.audio_narrative);
-                    utterance.lang = I18N[this.state.lang].speechLang;
-                    utterance.rate = 0.9;
-
-                    utterance.onend = () => {
-                        this.stopAudio();
-                        progress.style.width = '100%';
-                    };
-
-                    window.speechSynthesis.speak(utterance);
-
-                    let w = 0;
-                    const duration = data.audio_narrative.length * 70;
-                    const step = 100 / (duration / 100);
-
-                    this.state.synthInterval = setInterval(() => {
-                        w += step;
-                        if (w > 100) w = 100;
-                        progress.style.width = w + '%';
-                    }, 100);
-
-                } else {
-                    let w = 0;
-                    this.state.synthInterval = setInterval(() => {
-                        w += 2;
-                        progress.style.width = w + '%';
-                        if (w >= 100) {
-                            this.stopAudio();
-                            progress.style.width = '100%';
-                        }
-                    }, 100);
-                }
-            } else {
-                this.stopAudio();
-                progress.style.width = '0%';
-            }
-        });
+        this.state.synthInterval = null;
+        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        this.state.utterance = null;
+        const btn = document.getElementById("play-summary-btn");
+        if (btn) btn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
     },
 
     speakText(text) {
-        if ('speechSynthesis' in window) {
+        if ("speechSynthesis" in window) {
             window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = I18N[this.state.lang].speechLang;
-            window.speechSynthesis.speak(utterance);
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = I18N[this.state.lang].speechLang;
+            window.speechSynthesis.speak(u);
         }
     },
 
+    // ── QUIZ ──────────────────────────────────────────────────
     startQuiz() {
+        const data = this.state.activeBook;
+        if (!data || !data.quiz || data.quiz.length === 0) {
+            this.showAlert(this.state.lang === "ar" ? "لا توجد أسئلة في هذا الكتاب" : "No quiz questions found for this book.");
+            return;
+        }
         this.state.currentQuizIndex = 0;
         this.state.score = 0;
-        document.getElementById('feedback-modal').classList.remove('show');
+        // Hide feedback modal first
+        const modal = document.getElementById("feedback-modal");
+        modal.className = "feedback-modal";
+        this.navigateTo("quiz");
         this.renderQuestion();
-        this.navigateTo('quiz');
     },
 
     renderQuestion() {
-        const data = this.getActiveBookData();
+        const data = this.state.activeBook;
         const t = I18N[this.state.lang];
+        if (!data || !data.quiz) return;
+
         const qIndex = this.state.currentQuizIndex;
         const total = data.quiz.length;
         const questionData = data.quiz[qIndex];
+        if (!questionData) return;
 
-        // Update Header
-        document.getElementById('quiz-counter').innerText = `${qIndex + 1} / ${total}`;
-        const targetPercent = (qIndex / total) * 100;
-        document.getElementById('quiz-progress').style.width = `${targetPercent}%`;
+        // Header counters
+        document.getElementById("quiz-counter").innerText = `${qIndex + 1} / ${total}`;
+        document.getElementById("quiz-progress").style.width = `${(qIndex / total) * 100}%`;
 
-        // Reset UI
-        document.getElementById('next-question-btn').style.display = 'none';
-        const modal = document.getElementById('feedback-modal');
-        modal.classList.remove('show', 'correct', 'wrong');
+        // Reset modal + next button
+        document.getElementById("next-question-btn").style.display = "none";
+        document.getElementById("feedback-modal").className = "feedback-modal";
 
-        // Set Content
-        const qText = document.getElementById('quiz-question-text');
-        qText.innerText = questionData.question;
+        // Question text with slide-in animation
+        const qTextEl = document.getElementById("quiz-question-text");
+        qTextEl.innerText = questionData.question;
+        qTextEl.parentElement.classList.remove("slide-in");
+        void qTextEl.parentElement.offsetWidth; // force reflow
+        qTextEl.parentElement.classList.add("slide-in");
 
-        // Trigger Animations
-        qText.parentElement.classList.remove('slide-in');
-        void qText.parentElement.offsetWidth; // Reflow
-        qText.parentElement.classList.add('slide-in');
+        // Options
+        const optContainer = document.getElementById("quiz-options");
+        optContainer.innerHTML = "";
+        optContainer.classList.remove("slide-in");
+        void optContainer.offsetWidth;
+        optContainer.classList.add("slide-in");
 
-        const optContainer = document.getElementById('quiz-options');
-        optContainer.innerHTML = '';
-        optContainer.classList.remove('slide-in');
-        void optContainer.offsetWidth; // Reflow
-        optContainer.classList.add('slide-in');
-
-        // Create Options
-        const optionEntries = Object.entries(questionData.options);
-        optionEntries.forEach(([key, val], idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerHTML = `<span class="opt-letter">${key}</span> <span>${val}</span>`;
-            // Add a little staggered entrance delay
-            btn.style.animationDelay = `${idx * 0.1}s`;
-            btn.onclick = () => this.handleAnswer(key, btn, questionData);
+        Object.entries(questionData.options).forEach(([key, val], idx) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.style.animationDelay = `${idx * 0.08}s`;
+            btn.innerHTML = `<span class="opt-letter">${key}</span><span>${val}</span>`;
+            btn.addEventListener("click", () => this.handleAnswer(key, btn, questionData));
             optContainer.appendChild(btn);
         });
 
-        document.getElementById('next-question-btn').onclick = () => {
+        // Next button handler (fresh assignment each question)
+        const nextBtn = document.getElementById("next-question-btn");
+        nextBtn.onclick = () => {
             if (this.state.currentQuizIndex < total - 1) {
                 this.state.currentQuizIndex++;
                 this.renderQuestion();
             } else {
-                document.getElementById('quiz-progress').style.width = `100%`;
+                document.getElementById("quiz-progress").style.width = "100%";
                 setTimeout(() => {
-                    alert(`${t.completedMsg}${this.state.score} / ${total}`);
-                    this.navigateTo('home');
-                }, 300);
+                    this.showAlert(`${t.completedMsg}${this.state.score} / ${total}`);
+                    this.navigateTo("home");
+                }, 400);
             }
         };
     },
 
     handleAnswer(selectedKey, btnElement, questionData) {
-        // Prevent multiple answers
-        const buttons = document.querySelectorAll('.option-btn');
-        if ([...buttons].some(b => b.classList.contains('disabled'))) return;
+        // Block if already answered
+        const buttons = document.querySelectorAll(".option-btn");
+        if ([...buttons].some(b => b.classList.contains("disabled"))) return;
 
-        buttons.forEach(b => b.classList.add('disabled'));
+        // Disable all options
+        buttons.forEach(b => b.classList.add("disabled"));
 
         const isCorrect = selectedKey === questionData.correct_option;
         const t = I18N[this.state.lang];
 
         if (isCorrect) {
-            btnElement.classList.add('selected-correct');
+            btnElement.classList.add("selected-correct");
             this.state.score++;
             this.showFeedback(true, t.excellent, questionData.explanation);
         } else {
-            btnElement.classList.add('selected-wrong');
-            const correctBtn = Array.from(buttons).find(b => b.querySelector('.opt-letter').innerText === questionData.correct_option);
-            if (correctBtn) {
-                // Wait slightly before showing correct answer for better UX
-                setTimeout(() => correctBtn.classList.add('selected-correct'), 300);
-            }
+            btnElement.classList.add("selected-wrong");
+            // Highlight correct button after short delay
+            setTimeout(() => {
+                const correctBtn = [...buttons].find(b =>
+                    b.querySelector(".opt-letter")?.innerText === questionData.correct_option
+                );
+                if (correctBtn) correctBtn.classList.add("selected-correct");
+            }, 300);
             this.showFeedback(false, `${t.goodTry} (${questionData.correct_option})`, questionData.explanation);
         }
 
-        document.getElementById('next-question-btn').style.display = 'flex';
-
-        const total = this.getActiveBookData().quiz.length;
-        const progressPercent = ((this.state.currentQuizIndex + 1) / total) * 100;
-        document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+        // Show next button and update progress
+        document.getElementById("next-question-btn").style.display = "flex";
+        const total = this.state.activeBook.quiz.length;
+        document.getElementById("quiz-progress").style.width = `${((this.state.currentQuizIndex + 1) / total) * 100}%`;
     },
 
     showFeedback(isCorrect, title, explanation) {
-        const modal = document.getElementById('feedback-modal');
-        // Minor delay to let the button color transition finish
         setTimeout(() => {
-            modal.className = `feedback-modal show ${isCorrect ? 'correct' : 'wrong'}`;
-            document.getElementById('feedback-icon').innerHTML = isCorrect ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>';
-            document.getElementById('feedback-title').innerText = title;
-            document.getElementById('feedback-explanation').innerText = explanation;
-        }, 300);
+            const modal = document.getElementById("feedback-modal");
+            modal.className = `feedback-modal show ${isCorrect ? "correct" : "wrong"}`;
+            document.getElementById("feedback-icon").innerHTML = isCorrect
+                ? '<i class="fas fa-check-circle"></i>'
+                : '<i class="fas fa-times-circle"></i>';
+            document.getElementById("feedback-title").innerText = title;
+            document.getElementById("feedback-explanation").innerText = explanation;
+        }, 250);
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+// ── BOOTSTRAP ─────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
     app.init();
 });
