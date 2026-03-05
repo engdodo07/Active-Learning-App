@@ -1,73 +1,10 @@
 // ============================================================
-// DEFAULT BOOK — shown when the app first loads
+// pdf.js worker setup
 // ============================================================
-const DEFAULT_BOOK_EN = {
-    metadata: { chapter_title: "AI in Education", key_concepts: ["Machine Learning", "Big Data", "Personalization"] },
-    structured_summary: [
-        { topic: "Inspiring Introduction", content: "Artificial Intelligence is the simulation of human intelligence processes by machines and computer systems, used to elevate the educational experience.", has_table: false },
-        { topic: "Machine Learning Applications", content: "| Application | Benefit |\n|---|---|\n| Smart Recommendations | Increase engagement with tailored content |\n| Automated Grading | Save teacher time for creative tasks |\n| Analytical Tracking | Identify weaknesses early |", has_table: true }
-    ],
-    quiz: [
-        { question: "What is the primary goal of effectively using AI in education?", options: { A: "Reducing teachers in schools", B: "Personalizing the learning experience", C: "Abolishing traditional schools", D: "Accelerating daily exams" }, correct_option: "B", explanation: "AI helps analyze student data to provide tailored content. Thus (B) is correct." },
-        { question: "Which of the following is NOT an AI application in classrooms?", options: { A: "Standard wooden whiteboards", B: "Auto-grading systems", C: "Chatbots for answers", D: "Adaptive learning platforms" }, correct_option: "A", explanation: "Standard whiteboards are traditional tools with no algorithms." },
-        { question: "How does Big Data contribute to improving education?", options: { A: "By storing millions of books", B: "By tracking student learning patterns", C: "By consuming more storage", D: "It doesn't contribute" }, correct_option: "B", explanation: "Analyzing student patterns enables personalized guidance." }
-    ],
-    audio_narrative: "Welcome, Champion, to the AI in Education chapter. We will explore how to revolutionize learning through automatic content personalization and data-driven analysis of student performance."
-};
-
-const DEFAULT_BOOK_AR = {
-    metadata: { chapter_title: "الذكاء الاصطناعي في التعليم", key_concepts: ["تعلم الآلة", "البيانات الضخمة", "التخصيص"] },
-    structured_summary: [
-        { topic: "مقدمة ملهمة", content: "الذكاء الاصطناعي هو قدرة الآلات على محاكاة القدرات الذهنية للبشر للارتقاء بالتجربة التعليمية.", has_table: false },
-        { topic: "تطبيقات التعلم الآلي", content: "| التطبيق | الفائدة |\n|---|---|\n| التوصيات الذكية | زيادة تفاعل الطلاب |\n| التصحيح الآلي | توفير وقت المعلم |\n| المتابعة التحليلية | تحديد نقاط الضعف مبكراً |", has_table: true }
-    ],
-    quiz: [
-        { question: "ما هو الهدف الرئيسي من استخدام الذكاء الاصطناعي في التعليم؟", options: { A: "تقليل عدد المعلمين", B: "تخصيص تجربة التعلم لكل طالب", C: "إلغاء المدارس التقليدية", D: "تسريع الامتحانات" }, correct_option: "B", explanation: "(B) صحيحة لأن الذكاء الاصطناعي يقدم محتوى مخصص لكل طالب." },
-        { question: "أي أداة ليست من تطبيقات الذكاء الاصطناعي؟", options: { A: "ألواح الكتابة الخشبية", B: "أنظمة التصحيح التلقائي", C: "روبوتات المحادثة", D: "منصات التعلم التكيفي" }, correct_option: "A", explanation: "ألواح الكتابة أدوات تقليدية بدون خوارزميات." },
-        { question: "كيف تساهم البيانات الضخمة في التعليم؟", options: { A: "تخزين الكتب فقط", B: "تتبع وتحليل أنماط التعلم", C: "استهلاك مساحة أكبر", D: "لا تساهم" }, correct_option: "B", explanation: "تحليل الأنماط يمكّن من توجيه الطلاب بشكل مخصص." }
-    ],
-    audio_narrative: "أهلاً بك يا بطل في فصل الذكاء الاصطناعي في التعليم. سنتعرف على التخصيص التلقائي واستخدام البيانات لتحليل أداء الطلاب."
-};
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 // ============================================================
-// DEMO UPLOAD DATA — completely DIFFERENT content loaded on PDF upload
-// ============================================================
-const DEMO_UPLOAD_EN = {
-    metadata: { chapter_title: "Cybersecurity Fundamentals", key_concepts: ["Encryption", "Firewalls", "Phishing", "Two-Factor Authentication"] },
-    structured_summary: [
-        { topic: "What is Cybersecurity?", content: "Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information.", has_table: false },
-        { topic: "Common Cyber Threats", content: "| Threat | Description |\n|---|---|\n| Phishing | Fake emails tricking users into revealing passwords |\n| Ransomware | Malware that locks files until a ransom is paid |\n| Man-in-the-Middle | Attacker intercepts communication between two parties |\n| SQL Injection | Malicious code inserted into database queries |", has_table: true },
-        { topic: "How to Stay Safe", content: "Always use strong, unique passwords. Enable two-factor authentication (2FA) on all accounts. Keep your software updated. Never click suspicious links in emails.", has_table: false }
-    ],
-    quiz: [
-        { question: "What is the primary purpose of encryption?", options: { A: "To make websites load faster", B: "To convert data into unreadable code for unauthorized users", C: "To delete old files automatically", D: "To increase storage space" }, correct_option: "B", explanation: "Encryption converts readable data (plaintext) into unreadable code (ciphertext) so only authorized parties with the decryption key can access it. It does NOT speed up websites or manage storage." },
-        { question: "Which of the following is an example of a phishing attack?", options: { A: "A software update from your operating system", B: "A fake email pretending to be your bank asking for your password", C: "A firewall blocking suspicious traffic", D: "A strong password requirement on a website" }, correct_option: "B", explanation: "Phishing involves deceptive communications (usually emails) that impersonate trusted entities to steal credentials. A real OS update (A), firewall (C), and password rules (D) are legitimate security measures." },
-        { question: "What does Two-Factor Authentication (2FA) provide?", options: { A: "Two different passwords for the same account", B: "An extra layer of security beyond just a password", C: "Automatic virus removal", D: "Faster login speeds" }, correct_option: "B", explanation: "2FA adds a second verification step (like a code sent to your phone) beyond the password. This means even if someone steals your password, they still cannot access your account without the second factor." },
-        { question: "What is a firewall?", options: { A: "A physical wall that protects servers from fire", B: "A network security system that monitors and controls traffic", C: "A type of computer virus", D: "A backup storage device" }, correct_option: "B", explanation: "A firewall is a security system (hardware or software) that monitors incoming and outgoing network traffic and blocks unauthorized access based on security rules." },
-        { question: "Which practice is MOST effective against ransomware?", options: { A: "Using the same password everywhere", B: "Never updating your software", C: "Regularly backing up your data", D: "Disabling your antivirus" }, correct_option: "C", explanation: "Regular backups ensure you can restore your data without paying a ransom. The other options (A, B, D) actually INCREASE your vulnerability to ransomware attacks." }
-    ],
-    audio_narrative: "Welcome to Cybersecurity Fundamentals! In this chapter, we'll explore how to protect yourself online. You'll learn about encryption, firewalls, phishing attacks, and two-factor authentication. Cybersecurity is essential in our digital world — understanding these concepts helps you stay safe from hackers and data breaches. Let's dive in!"
-};
-
-const DEMO_UPLOAD_AR = {
-    metadata: { chapter_title: "أساسيات الأمن السيبراني", key_concepts: ["التشفير", "جدران الحماية", "التصيد الاحتيالي", "المصادقة الثنائية"] },
-    structured_summary: [
-        { topic: "ما هو الأمن السيبراني؟", content: "الأمن السيبراني هو ممارسة حماية الأنظمة والشبكات والبرامج من الهجمات الرقمية التي تهدف للوصول إلى المعلومات الحساسة أو تغييرها أو تدميرها.", has_table: false },
-        { topic: "التهديدات السيبرانية الشائعة", content: "| التهديد | الوصف |\n|---|---|\n| التصيد الاحتيالي | رسائل مزيفة لسرقة كلمات المرور |\n| برامج الفدية | برمجيات تقفل الملفات حتى دفع فدية |\n| هجمات الوسيط | اعتراض الاتصال بين طرفين |\n| حقن SQL | إدخال أكواد خبيثة في قواعد البيانات |", has_table: true },
-        { topic: "كيف تحمي نفسك؟", content: "استخدم كلمات مرور قوية وفريدة. فعّل المصادقة الثنائية على جميع حساباتك. حدّث برامجك باستمرار. لا تضغط على روابط مشبوهة في البريد الإلكتروني.", has_table: false }
-    ],
-    quiz: [
-        { question: "ما هو الغرض الرئيسي من التشفير؟", options: { A: "تسريع تحميل المواقع", B: "تحويل البيانات إلى رموز غير مقروءة للمستخدمين غير المصرح لهم", C: "حذف الملفات القديمة تلقائياً", D: "زيادة مساحة التخزين" }, correct_option: "B", explanation: "التشفير يحوّل البيانات المقروءة إلى رموز لا يمكن فهمها إلا بمفتاح فك التشفير. لا علاقة له بسرعة المواقع أو التخزين." },
-        { question: "أي مما يلي يعتبر هجوم تصيد احتيالي؟", options: { A: "تحديث نظام التشغيل", B: "بريد مزيف يتظاهر بأنه من البنك ويطلب كلمة المرور", C: "جدار حماية يمنع حركة مرور مشبوهة", D: "متطلبات كلمة مرور قوية" }, correct_option: "B", explanation: "التصيد يتضمن رسائل خادعة تنتحل صفة جهات موثوقة لسرقة بياناتك. الخيارات الأخرى إجراءات أمنية حقيقية." },
-        { question: "ماذا توفر المصادقة الثنائية؟", options: { A: "كلمتي مرور مختلفتين", B: "طبقة أمان إضافية فوق كلمة المرور", C: "إزالة الفيروسات تلقائياً", D: "تسجيل دخول أسرع" }, correct_option: "B", explanation: "المصادقة الثنائية تضيف خطوة تحقق ثانية (مثل رمز يُرسل لهاتفك) فحتى لو سُرقت كلمة مرورك، لن يتمكن أحد من الدخول." },
-        { question: "ما هو جدار الحماية (Firewall)؟", options: { A: "جدار مادي يحمي الخوادم من الحريق", B: "نظام أمن شبكي يراقب ويتحكم في حركة البيانات", C: "نوع من الفيروسات", D: "جهاز تخزين احتياطي" }, correct_option: "B", explanation: "جدار الحماية هو نظام أمني يراقب حركة البيانات الواردة والصادرة ويمنع الوصول غير المصرح به." },
-        { question: "ما أفضل ممارسة ضد برامج الفدية؟", options: { A: "استخدام نفس كلمة المرور في كل مكان", B: "عدم تحديث البرامج أبداً", C: "عمل نسخ احتياطية منتظمة للبيانات", D: "تعطيل مضاد الفيروسات" }, correct_option: "C", explanation: "النسخ الاحتياطية المنتظمة تضمن استعادة بياناتك دون دفع فدية. الخيارات الأخرى تزيد من تعرضك للخطر." }
-    ],
-    audio_narrative: "أهلاً بك في فصل أساسيات الأمن السيبراني! سنتعرف على كيفية حماية نفسك من الهجمات الإلكترونية، بما في ذلك التشفير وجدران الحماية وهجمات التصيد والمصادقة الثنائية. فهم هذه المفاهيم ضروري للبقاء آمناً في عالمنا الرقمي."
-};
-
-// ============================================================
-// i18n STRINGS
+// i18n
 // ============================================================
 const I18N = {
     en: {
@@ -84,10 +21,9 @@ const I18N = {
         excellent: "Excellent answer!",
         goodTry: "Good try, the correct answer is",
         completedMsg: "Quiz finished, Champion! Your score: ",
-        recentBooks: [
-            { title: "Data Science Fundamentals", progress: 100 },
-            { title: "Introduction to Modern Physics", progress: 40 }
-        ]
+        apiKeyDesc: "Enter your Google Gemini API key to enable AI-powered analysis.",
+        saveKey: "Save",
+        recentBooks: []
     },
     ar: {
         greetingTitle: "أهلاً بك يا بطل! 👋",
@@ -103,12 +39,52 @@ const I18N = {
         excellent: "إجابة ممتازة!",
         goodTry: "محاولة جيدة، الإجابة الصحيحة هي",
         completedMsg: "انتهى الاختبار يا بطل! نتيجتك: ",
-        recentBooks: [
-            { title: "أساسيات علم البيانات", progress: 100 },
-            { title: "مقدمة في الفيزياء الحديثة", progress: 40 }
-        ]
+        apiKeyDesc: "أدخل مفتاح Google Gemini API لتفعيل التحليل بالذكاء الاصطناعي.",
+        saveKey: "حفظ",
+        recentBooks: []
     }
 };
+
+// ============================================================
+// GEMINI API PROMPT
+// ============================================================
+function buildAIPrompt(text, lang) {
+    const langInstruction = lang === "ar"
+        ? "IMPORTANT: Generate ALL content (summary, quiz questions, options, explanations, and audio narrative) in Arabic."
+        : "IMPORTANT: Generate ALL content in English.";
+
+    return `You are an elite AI Instructional Designer. Analyze the following text extracted from a PDF book and transform it into a structured learning module.
+
+${langInstruction}
+
+Instructions:
+1. Content Analysis: Identify the core concepts, definitions, key ideas, and any tables/data.
+2. Summary Generation: Create a structured summary. Use Markdown for tables.
+3. Quiz Engineering: Generate 5–10 multiple-choice questions that test understanding, not just recall. Each question must have a detailed explanation.
+4. Audio Script: Write a conversational, easy-to-listen summary script (150–300 words).
+
+You MUST respond with ONLY valid JSON in this exact format, no extra text:
+{
+  "metadata": { "chapter_title": "string", "key_concepts": ["list"] },
+  "structured_summary": [
+    { "topic": "string", "content": "markdown_text", "has_table": false }
+  ],
+  "quiz": [
+    {
+      "question": "string",
+      "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
+      "correct_option": "A or B or C or D",
+      "explanation": "Detailed explanation"
+    }
+  ],
+  "audio_narrative": "Conversational script for text-to-speech (150-300 words)"
+}
+
+Here is the extracted text from the book:
+---
+${text.substring(0, 30000)}
+---`;
+}
 
 // ============================================================
 // MAIN APP
@@ -125,14 +101,30 @@ const app = {
 
     // ── INIT ──────────────────────────────────────────────
     init() {
-        this.state.activeBook = DEFAULT_BOOK_EN;
+        // Load saved API key
+        const savedKey = localStorage.getItem("gemini_api_key");
+        if (!savedKey) {
+            // Pre-fill with the provided key
+            localStorage.setItem("gemini_api_key", "AIzaSyBFlBYhwp56Eb-Sf-LODgc8D7pmlBzEDiY");
+        }
+
+        // Load saved books from localStorage
+        const savedBooks = localStorage.getItem("recentBooks");
+        if (savedBooks) {
+            try {
+                const books = JSON.parse(savedBooks);
+                I18N.en.recentBooks = books;
+                I18N.ar.recentBooks = books;
+            } catch (e) { }
+        }
+
         this.applyLanguage();
-
         document.getElementById("listen-question-btn").addEventListener("click", () => {
-            const q = this.state.activeBook.quiz[this.state.currentQuizIndex];
-            if (q) this.speakText(q.question);
+            if (this.state.activeBook && this.state.activeBook.quiz) {
+                const q = this.state.activeBook.quiz[this.state.currentQuizIndex];
+                if (q) this.speakText(q.question);
+            }
         });
-
         document.getElementById("play-summary-btn").addEventListener("click", () => this.toggleAudio());
     },
 
@@ -142,15 +134,6 @@ const app = {
         document.documentElement.lang = this.state.lang;
         document.documentElement.dir = this.state.lang === "ar" ? "rtl" : "ltr";
         this.stopAudio();
-
-        // Switch built-in books with language — keep uploaded books as-is
-        if (this.state.activeBook === DEFAULT_BOOK_EN || this.state.activeBook === DEFAULT_BOOK_AR) {
-            this.state.activeBook = this.state.lang === "en" ? DEFAULT_BOOK_EN : DEFAULT_BOOK_AR;
-        } else if (this.state.activeBook === DEMO_UPLOAD_EN || this.state.activeBook === DEMO_UPLOAD_AR) {
-            this.state.activeBook = this.state.lang === "en" ? DEMO_UPLOAD_EN : DEMO_UPLOAD_AR;
-        }
-        // Custom JSON uploads stay as-is (no language variant)
-
         this.applyLanguage();
         if (document.getElementById("study-hub-screen").classList.contains("active")) this.renderStudyHub();
         if (document.getElementById("quiz-screen").classList.contains("active")) this.renderQuestion();
@@ -166,6 +149,7 @@ const app = {
         if (this.state.activeBook) {
             document.getElementById("hub-chapter-title").innerText = this.state.activeBook.metadata.chapter_title;
             document.getElementById("resume-chapter-name").innerText = this.state.activeBook.metadata.chapter_title;
+            document.getElementById("resume-section").style.display = "block";
         }
     },
 
@@ -181,8 +165,15 @@ const app = {
     // ── HOME ──────────────────────────────────────────────
     renderHome() {
         const t = I18N[this.state.lang];
-        document.getElementById("recent-list").innerHTML = t.recentBooks.map(book => `
-            <div class="book-item">
+        const list = document.getElementById("recent-list");
+        if (t.recentBooks.length === 0) {
+            list.innerHTML = `<p style="text-align:center;color:var(--text-muted);padding:32px 0;font-weight:600">
+                ${this.state.lang === "ar" ? "لم يتم رفع أي كتب بعد. ارفع أول كتاب الآن!" : "No books uploaded yet. Upload your first book!"}
+            </p>`;
+            return;
+        }
+        list.innerHTML = t.recentBooks.map((book, idx) => `
+            <div class="book-item" style="cursor:pointer" onclick="app.loadSavedBook(${idx})">
                 <div class="book-icon"><i class="fas fa-file-pdf"></i></div>
                 <div class="book-details">
                     <h4>${book.title}</h4>
@@ -192,16 +183,48 @@ const app = {
             </div>`).join("");
     },
 
+    loadSavedBook(idx) {
+        const t = I18N[this.state.lang];
+        const book = t.recentBooks[idx];
+        if (book && book.data) {
+            this.state.activeBook = book.data;
+            this.state.currentQuizIndex = 0;
+            this.state.score = 0;
+            document.getElementById("resume-chapter-name").innerText = book.title;
+            document.getElementById("resume-section").style.display = "block";
+            this.navigateTo("study-hub");
+        }
+    },
+
+    // ── API KEY MODAL ─────────────────────────────────────
+    showApiKeyModal() {
+        const modal = document.getElementById("apikey-modal");
+        const input = document.getElementById("apikey-input");
+        input.value = localStorage.getItem("gemini_api_key") || "";
+        modal.style.display = "flex";
+    },
+
+    hideApiKeyModal() {
+        document.getElementById("apikey-modal").style.display = "none";
+    },
+
+    saveApiKey() {
+        const key = document.getElementById("apikey-input").value.trim();
+        if (key) {
+            localStorage.setItem("gemini_api_key", key);
+            this.hideApiKeyModal();
+            alert(this.state.lang === "ar" ? "✅ تم حفظ المفتاح بنجاح!" : "✅ API Key saved successfully!");
+        }
+    },
+
     // ── FILE UPLOAD ───────────────────────────────────────
     handleFileUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
         event.target.value = "";
-
         const ext = file.name.toLowerCase().split(".").pop();
 
         if (ext === "json") {
-            // ── JSON Upload: parse and load directly ──
             const reader = new FileReader();
             reader.onload = e => {
                 try {
@@ -209,61 +232,170 @@ const app = {
                     if (data.metadata && data.structured_summary && data.quiz && data.audio_narrative) {
                         this.setActiveBook(data);
                     } else {
-                        alert(this.state.lang === "ar"
-                            ? "❌ ملف JSON لا يحتوي على الحقول المطلوبة"
-                            : "❌ JSON file missing required fields (metadata, structured_summary, quiz, audio_narrative)");
+                        alert("❌ Invalid JSON structure.");
                     }
-                } catch (err) {
-                    alert("❌ Error reading JSON: " + err.message);
-                }
+                } catch (err) { alert("❌ JSON parse error: " + err.message); }
             };
             reader.readAsText(file);
 
         } else if (ext === "pdf") {
-            // ── PDF Upload: simulate AI processing, load DIFFERENT demo content ──
-            this.showOverlay(true);
-            setTimeout(() => {
-                this.showOverlay(false);
-                // Load DIFFERENT content (Cybersecurity) so user sees a visible change
-                const demoData = this.state.lang === "ar" ? DEMO_UPLOAD_AR : DEMO_UPLOAD_EN;
-                this.setActiveBook(demoData);
-            }, 2000);
+            this.processPDF(file);
 
         } else {
             alert(this.state.lang === "ar" ? "يرجى رفع ملف PDF أو JSON" : "Please upload a PDF or JSON file");
         }
     },
 
-    // ★ SINGLE function that switches the active book ★
+    // ── PDF PROCESSING PIPELINE ───────────────────────────
+    async processPDF(file) {
+        const apiKey = localStorage.getItem("gemini_api_key");
+        if (!apiKey) {
+            this.showApiKeyModal();
+            alert(this.state.lang === "ar"
+                ? "يرجى إدخال مفتاح Gemini API أولاً"
+                : "Please enter your Gemini API key first.");
+            return;
+        }
+
+        this.showOverlay(true,
+            this.state.lang === "ar" ? "جاري استخراج النص من الكتاب..." : "Extracting text from book...",
+            this.state.lang === "ar" ? "الخطوة 1 من 2" : "Step 1 of 2"
+        );
+
+        try {
+            // ── STEP 1: Extract text from PDF ──
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            let extractedText = "";
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                const pageText = content.items.map(item => item.str).join(" ");
+                extractedText += pageText + "\n\n";
+
+                // Update overlay progress
+                this.updateOverlaySub(
+                    this.state.lang === "ar"
+                        ? `صفحة ${i} من ${pdf.numPages}`
+                        : `Page ${i} of ${pdf.numPages}`
+                );
+            }
+
+            if (extractedText.trim().length < 50) {
+                this.showOverlay(false);
+                alert(this.state.lang === "ar"
+                    ? "❌ لم يتم العثور على نص كافٍ في هذا الملف. قد يكون PDF عبارة عن صور."
+                    : "❌ Not enough text found. The PDF may be image-based (scanned).");
+                return;
+            }
+
+            // ── STEP 2: Send to Gemini AI ──
+            this.updateOverlayText(
+                this.state.lang === "ar" ? "الذكاء الاصطناعي يحلل المحتوى..." : "AI is analyzing your content...",
+                this.state.lang === "ar" ? "الخطوة 2 من 2 — قد يستغرق دقيقة" : "Step 2 of 2 — may take a minute"
+            );
+
+            const prompt = buildAIPrompt(extractedText, this.state.lang);
+            const result = await this.callGeminiAPI(apiKey, prompt);
+
+            if (result) {
+                this.setActiveBook(result);
+                this.showOverlay(false);
+            } else {
+                this.showOverlay(false);
+                alert(this.state.lang === "ar"
+                    ? "❌ فشل تحليل الكتاب. حاول مرة أخرى."
+                    : "❌ Failed to analyze the book. Please try again.");
+            }
+
+        } catch (err) {
+            this.showOverlay(false);
+            console.error("PDF processing error:", err);
+            alert("❌ Error: " + err.message);
+        }
+    },
+
+    // ── GEMINI API CALL ───────────────────────────────────
+    async callGeminiAPI(apiKey, prompt) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 8192,
+                    responseMimeType: "application/json"
+                }
+            })
+        });
+
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            const errMsg = errData?.error?.message || response.statusText;
+            throw new Error("Gemini API error: " + errMsg);
+        }
+
+        const data = await response.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) throw new Error("Empty response from Gemini API");
+
+        // Parse JSON — strip markdown code fences if present
+        const cleanJson = text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
+        const parsed = JSON.parse(cleanJson);
+
+        // Validate structure
+        if (!parsed.metadata || !parsed.structured_summary || !parsed.quiz || !parsed.audio_narrative) {
+            throw new Error("AI returned incomplete data structure");
+        }
+        return parsed;
+    },
+
+    // ── SET ACTIVE BOOK ───────────────────────────────────
     setActiveBook(data) {
         this.state.activeBook = data;
         this.state.currentQuizIndex = 0;
         this.state.score = 0;
 
-        const t = I18N[this.state.lang];
-        t.recentBooks.unshift({ title: data.metadata.chapter_title, progress: 0 });
+        const title = data.metadata.chapter_title;
+        const bookEntry = { title, progress: 0, data };
 
+        // Save to both language recent books + localStorage
+        I18N.en.recentBooks.unshift(bookEntry);
+        I18N.ar.recentBooks = I18N.en.recentBooks; // Share the same list
+
+        // Persist to localStorage (without the full data to save space — store last 10)
+        const forStorage = I18N.en.recentBooks.slice(0, 10).map(b => ({
+            title: b.title, progress: b.progress, data: b.data
+        }));
+        try { localStorage.setItem("recentBooks", JSON.stringify(forStorage)); } catch (e) { }
+
+        document.getElementById("resume-chapter-name").innerText = title;
+        document.getElementById("resume-section").style.display = "block";
         this.renderHome();
-        document.getElementById("resume-chapter-name").innerText = data.metadata.chapter_title;
         this.navigateTo("study-hub");
     },
 
-    showOverlay(show) {
-        let ov = document.getElementById("processing-overlay");
-        if (show && !ov) {
-            ov = document.createElement("div");
-            ov.id = "processing-overlay";
-            ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center";
-            ov.innerHTML = `<div style="background:#fff;border-radius:20px;padding:40px;text-align:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:1.1rem">
-                <div style="width:48px;height:48px;border:5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px"></div>
-                ${this.state.lang === "ar" ? "جاري تحليل الملف..." : "Analyzing file..."}</div>`;
-            if (!document.getElementById("spin-css")) {
-                const s = document.createElement("style"); s.id = "spin-css";
-                s.textContent = "@keyframes spin{to{transform:rotate(360deg)}}";
-                document.head.appendChild(s);
-            }
-            document.body.appendChild(ov);
-        } else if (!show && ov) { ov.remove(); }
+    // ── OVERLAY HELPERS ───────────────────────────────────
+    showOverlay(show, text, sub) {
+        const ov = document.getElementById("processing-overlay");
+        if (show) {
+            document.getElementById("overlay-text").innerText = text || "";
+            document.getElementById("overlay-subtext").innerText = sub || "";
+            ov.style.display = "flex";
+        } else {
+            ov.style.display = "none";
+        }
+    },
+    updateOverlayText(text, sub) {
+        document.getElementById("overlay-text").innerText = text || "";
+        document.getElementById("overlay-subtext").innerText = sub || "";
+    },
+    updateOverlaySub(sub) {
+        document.getElementById("overlay-subtext").innerText = sub || "";
     },
 
     // ── STUDY HUB ─────────────────────────────────────────
@@ -271,15 +403,20 @@ const app = {
         const data = this.state.activeBook;
         if (!data) return;
         document.getElementById("hub-chapter-title").innerText = data.metadata.chapter_title;
-
         let html = "";
+        if (data.metadata.key_concepts && data.metadata.key_concepts.length > 0) {
+            html += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">';
+            data.metadata.key_concepts.forEach(c => {
+                html += `<span style="background:var(--primary-light);color:var(--primary);padding:6px 14px;border-radius:100px;font-size:.9rem;font-weight:700">${c}</span>`;
+            });
+            html += '</div>';
+        }
         data.structured_summary.forEach(item => {
             html += "<h3>" + item.topic + "</h3>";
             html += item.has_table ? marked.parse(item.content) : "<p>" + item.content + "</p>";
         });
         document.getElementById("summary-content").innerHTML = html;
-
-        // Reset audio bar
+        // Reset audio
         const bar = document.querySelector(".timeline .progress");
         if (bar) bar.style.width = "0%";
         const btn = document.getElementById("play-summary-btn");
@@ -289,7 +426,6 @@ const app = {
     // ── AUDIO ─────────────────────────────────────────────
     toggleAudio() {
         if (this.state.audioPlaying) { this.stopAudio(); return; }
-
         const data = this.state.activeBook;
         if (!data || !data.audio_narrative) return;
 
@@ -343,7 +479,7 @@ const app = {
     startQuiz() {
         const data = this.state.activeBook;
         if (!data || !data.quiz || data.quiz.length === 0) {
-            alert(this.state.lang === "ar" ? "لا توجد أسئلة" : "No quiz questions found.");
+            alert(this.state.lang === "ar" ? "لا توجد أسئلة" : "No quiz questions available.");
             return;
         }
         this.state.currentQuizIndex = 0;
@@ -357,7 +493,6 @@ const app = {
         const data = this.state.activeBook;
         const t = I18N[this.state.lang];
         if (!data || !data.quiz) return;
-
         const idx = this.state.currentQuizIndex;
         const total = data.quiz.length;
         const q = data.quiz[idx];
@@ -393,7 +528,17 @@ const app = {
             if (idx < total - 1) { this.state.currentQuizIndex++; this.renderQuestion(); }
             else {
                 document.getElementById("quiz-progress").style.width = "100%";
-                setTimeout(() => { alert(t.completedMsg + this.state.score + " / " + total); this.navigateTo("home"); }, 400);
+                setTimeout(() => {
+                    alert(t.completedMsg + this.state.score + " / " + total);
+                    // Update progress in recent books
+                    const books = I18N.en.recentBooks;
+                    const bookEntry = books.find(b => b.data === this.state.activeBook);
+                    if (bookEntry) {
+                        bookEntry.progress = Math.round((this.state.score / total) * 100);
+                        try { localStorage.setItem("recentBooks", JSON.stringify(books.slice(0, 10))); } catch (e) { }
+                    }
+                    this.navigateTo("home");
+                }, 400);
             }
         };
     },
@@ -418,10 +563,8 @@ const app = {
             }, 300);
             this.showFeedback(false, t.goodTry + " (" + q.correct_option + ")", q.explanation);
         }
-
         document.getElementById("next-question-btn").style.display = "flex";
-        const total = this.state.activeBook.quiz.length;
-        document.getElementById("quiz-progress").style.width = ((this.state.currentQuizIndex + 1) / total * 100) + "%";
+        document.getElementById("quiz-progress").style.width = ((this.state.currentQuizIndex + 1) / this.state.activeBook.quiz.length * 100) + "%";
     },
 
     showFeedback(ok, title, explanation) {

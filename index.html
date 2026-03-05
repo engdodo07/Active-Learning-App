@@ -10,9 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- PDF.js for client-side PDF text extraction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <link rel="stylesheet" href="style.css">
-
-    <!-- PWA Meta Tags -->
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2563EB">
     <link rel="apple-touch-icon" href="icon.svg">
@@ -20,53 +21,53 @@
 
 <body>
     <div id="app">
-        <!-- 1. The Home Screen -->
+
+        <!-- ========== 1. HOME SCREEN ========== -->
         <div id="home-screen" class="screen active">
             <header class="home-header">
                 <div class="user-greeting">
                     <h1 data-i18n="greetingTitle">Welcome, Champion! 👋</h1>
                     <p data-i18n="greetingSub">Ready for a new learning journey?</p>
                 </div>
-                <!-- Language Toggle + Avatar -->
-                <div style="display: flex; gap: 16px; align-items: center;">
-                    <button class="icon-btn" onclick="app.toggleLanguage()" title="Change Language"
-                        style="color: var(--primary);">
-                        <i class="fas fa-language" style="font-size: 1.8rem;"></i>
+                <div style="display:flex;gap:8px;align-items:center">
+                    <button class="icon-btn" onclick="app.toggleLanguage()" title="Language"
+                        style="color:var(--primary)">
+                        <i class="fas fa-language" style="font-size:1.8rem"></i>
                     </button>
-                    <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                    <button class="icon-btn" onclick="app.showApiKeyModal()" title="Settings"
+                        style="color:var(--primary)">
+                        <i class="fas fa-cog" style="font-size:1.5rem"></i>
+                    </button>
                 </div>
             </header>
 
             <section class="action-section">
-                <!-- Hidden file input for uploading mock JSON data -->
-                <input type="file" id="book-upload-input" accept=".json,.pdf" style="display: none;"
+                <input type="file" id="book-upload-input" accept=".json,.pdf" style="display:none"
                     onchange="app.handleFileUpload(event)">
                 <button class="btn-primary large-action" onclick="document.getElementById('book-upload-input').click()">
-                    <i class="fas fa-plus-circle" style="margin-bottom: 8px; font-size: 2.5rem;"></i>
+                    <i class="fas fa-plus-circle" style="margin-bottom:8px;font-size:2.5rem"></i>
                     <span data-i18n="uploadBtn">Upload your new book (PDF)</span>
                 </button>
             </section>
 
-            <section class="resume-section">
+            <section class="resume-section" id="resume-section" style="display:none">
                 <div class="resume-card" onclick="app.navigateTo('study-hub')">
                     <div class="card-icon"><i class="fas fa-book-reader"></i></div>
                     <div class="card-content">
                         <h3 data-i18n="resumeTitle">Resume where you left off</h3>
-                        <p id="resume-chapter-name">AI in Education</p>
+                        <p id="resume-chapter-name"></p>
                     </div>
-                    <i class="fas fa-chevron-right directional-icon" style="opacity: 0.6;"></i>
+                    <i class="fas fa-chevron-right directional-icon" style="opacity:.6"></i>
                 </div>
             </section>
 
             <section class="recent-books-section">
                 <h2 data-i18n="libraryTitle">Your Library</h2>
-                <div class="recent-list" id="recent-list">
-                    <!-- Dynamic List -->
-                </div>
+                <div class="recent-list" id="recent-list"></div>
             </section>
         </div>
 
-        <!-- 2. The Study Hub -->
+        <!-- ========== 2. STUDY HUB ========== -->
         <div id="study-hub-screen" class="screen">
             <header class="hub-header">
                 <button class="icon-btn back-btn" onclick="app.navigateTo('home')">
@@ -74,7 +75,6 @@
                 </button>
                 <h2 id="hub-chapter-title">Chapter Name</h2>
             </header>
-
             <div class="study-content">
                 <div class="audio-player-card">
                     <button class="play-btn" id="play-summary-btn"><i class="fas fa-play directional-icon"></i></button>
@@ -85,12 +85,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="summary-area" id="summary-content">
-                    <!-- Markdown content goes here -->
-                </div>
+                <div class="summary-area" id="summary-content"></div>
             </div>
-
             <div class="fab-container">
                 <button class="fab-btn" onclick="app.startQuiz()">
                     <span data-i18n="startQuiz">Start Quiz Now</span>
@@ -99,62 +95,79 @@
             </div>
         </div>
 
-        <!-- 3. The Quiz Interface -->
+        <!-- ========== 3. QUIZ ========== -->
         <div id="quiz-screen" class="screen">
             <div class="quiz-header">
-                <button class="icon-btn" onclick="app.navigateTo('study-hub')">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button class="icon-btn" onclick="app.navigateTo('study-hub')"><i class="fas fa-times"></i></button>
                 <div class="progress-bar-container">
                     <div class="progress-bar-fill" id="quiz-progress"></div>
                 </div>
                 <span id="quiz-counter">1 / 5</span>
             </div>
-
             <div class="quiz-body">
                 <div class="question-box">
-                    <h2 id="quiz-question-text">Question text goes here?</h2>
+                    <h2 id="quiz-question-text"></h2>
                     <button class="icon-btn audio-question-btn" id="listen-question-btn" title="Listen"><i
                             class="fas fa-volume-up"></i></button>
                 </div>
-
-                <div class="options-container" id="quiz-options">
-                    <!-- Options buttons -->
-                </div>
-
+                <div class="options-container" id="quiz-options"></div>
                 <div class="next-btn-container">
                     <button id="next-question-btn" class="btn-primary"
-                        style="display: none; width: 100%; justify-content: space-between;">
+                        style="display:none;width:100%;justify-content:space-between">
                         <span data-i18n="nextQuestion">Next Question</span>
                         <i class="fas fa-arrow-right directional-icon"></i>
                     </button>
                 </div>
             </div>
-
-            <!-- Feedback Modal -->
             <div class="feedback-modal" id="feedback-modal">
                 <div class="feedback-content">
                     <div class="feedback-icon" id="feedback-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="feedback-text">
-                        <h3 id="feedback-title">Excellent answer!</h3>
-                        <p id="feedback-explanation">Explanation goes here.</p>
+                        <h3 id="feedback-title"></h3>
+                        <p id="feedback-explanation"></p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- ========== PROCESSING OVERLAY ========== -->
+        <div id="processing-overlay" class="overlay" style="display:none">
+            <div class="overlay-box">
+                <div class="spinner"></div>
+                <p id="overlay-text">Analyzing your book with AI...</p>
+                <p id="overlay-subtext" style="font-size:.85rem;color:var(--text-muted);margin-top:8px"></p>
+            </div>
+        </div>
+
+        <!-- ========== API KEY MODAL ========== -->
+        <div id="apikey-modal" class="overlay" style="display:none">
+            <div class="overlay-box" style="max-width:400px;width:90%">
+                <h3 style="margin-bottom:16px;color:var(--primary)">🔑 Gemini API Key</h3>
+                <p style="font-size:.95rem;color:var(--text-muted);margin-bottom:16px" data-i18n="apiKeyDesc">Enter your
+                    Google Gemini API key to enable AI-powered analysis.</p>
+                <input type="text" id="apikey-input" placeholder="AIzaSy..."
+                    style="width:100%;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:1rem;font-family:monospace;direction:ltr;margin-bottom:16px">
+                <div style="display:flex;gap:12px">
+                    <button class="btn-primary" style="flex:1" onclick="app.saveApiKey()">
+                        <i class="fas fa-save"></i> <span data-i18n="saveKey">Save</span>
+                    </button>
+                    <button class="icon-btn" onclick="app.hideApiKeyModal()"
+                        style="font-size:1rem;padding:14px 20px;border:2px solid var(--border);border-radius:12px">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
+
     <script src="app.js"></script>
     <script>
-        // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+                    .then(r => console.log('SW registered:', r.scope))
+                    .catch(e => console.log('SW failed:', e));
             });
         }
     </script>
