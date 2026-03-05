@@ -1,0 +1,75 @@
+{
+    "metadata": {
+        "chapter_title": "Introduction to Cloud Computing",
+        "key_concepts": [
+            "IaaS",
+            "PaaS",
+            "SaaS",
+            "Virtualization"
+        ]
+    },
+    "structured_summary": [
+        {
+            "topic": "What is Cloud Computing?",
+            "content": "Cloud computing is the delivery of computing services—servers, storage, databases, networking, software—over the internet (the cloud) to offer faster innovation, flexible resources, and economies of scale.",
+            "has_table": false
+        },
+        {
+            "topic": "Cloud Service Models",
+            "content": "| Model | Example | You Manage |\n|---|---|---|\n| IaaS (Infrastructure) | AWS EC2, Azure VMs | OS, Apps, Data |\n| PaaS (Platform) | Google App Engine, Heroku | Apps and Data only |\n| SaaS (Software) | Gmail, Dropbox, Slack | Nothing — just use it |",
+            "has_table": true
+        },
+        {
+            "topic": "Benefits of the Cloud",
+            "content": "Key benefits include: cost savings (pay only for what you use), scalability (grow or shrink instantly), reliability (data is backed up across regions), and global reach (deploy anywhere in minutes).",
+            "has_table": false
+        }
+    ],
+    "quiz": [
+        {
+            "question": "Which cloud model lets you manage ONLY your apps and data?",
+            "options": {
+                "A": "IaaS",
+                "B": "PaaS",
+                "C": "SaaS",
+                "D": "On-Premises"
+            },
+            "correct_option": "B",
+            "explanation": "PaaS (Platform as a Service) handles the infrastructure and OS for you, so you only manage your applications and data. IaaS gives you more control (and responsibility), SaaS gives you less, and On-Premises means you manage everything."
+        },
+        {
+            "question": "Gmail is an example of which cloud service model?",
+            "options": {
+                "A": "IaaS",
+                "B": "PaaS",
+                "C": "SaaS",
+                "D": "FaaS"
+            },
+            "correct_option": "C",
+            "explanation": "Gmail is Software as a Service (SaaS). Users simply access the email application via a browser without managing any infrastructure, platform, or code."
+        },
+        {
+            "question": "What is a key financial benefit of cloud computing over on-premises?",
+            "options": {
+                "A": "You must buy servers upfront",
+                "B": "Pay-as-you-go pricing reduces capital expenditure",
+                "C": "Cloud is always more expensive",
+                "D": "You cannot scale resources"
+            },
+            "correct_option": "B",
+            "explanation": "Cloud computing uses a pay-as-you-go model, meaning you only pay for the resources you actually consume. This eliminates the large upfront capital expenditure of buying and maintaining physical servers."
+        },
+        {
+            "question": "What does 'scalability' mean in cloud computing?",
+            "options": {
+                "A": "The cloud never goes down",
+                "B": "You can increase or decrease resources based on demand",
+                "C": "Data is encrypted automatically",
+                "D": "Applications run faster than on local machines"
+            },
+            "correct_option": "B",
+            "explanation": "Scalability refers to the ability to easily add or remove computing resources (like CPU, memory, or storage) based on current demand, ensuring performance during peak times without wasting money during quiet periods."
+        }
+    ],
+    "audio_narrative": "Welcome to Introduction to Cloud Computing! Cloud computing lets you use powerful servers, storage, and software over the internet instead of your own hardware. There are three main models: IaaS gives you virtual machines, PaaS gives you a ready platform to build apps, and SaaS gives you ready-to-use software like Gmail. The biggest benefits are cost savings, scalability, and global reach. Let's explore!"
+}

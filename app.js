@@ -1,66 +1,73 @@
 // ============================================================
-// MOCK DATA — used as default content when no file is uploaded
+// DEFAULT BOOK — shown when the app first loads
 // ============================================================
-const MOCK_DATA_AR = {
-    metadata: { chapter_title: "الذكاء الاصطناعي في التعليم", key_concepts: ["تعلم الآلة", "البيانات الضخمة", "التخصيص"] },
-    structured_summary: [
-        { topic: "مقدمة ملهمة", content: "الذكاء الاصطناعي هو قدرة الآلات والأنظمة على محاكاة القدرات الذهنية للبشر، مثل القدرة على التعلم والاستنتاج، للارتقاء بالتجربة التعليمية.", has_table: false },
-        { topic: "تطبيقات التعلم الآلي", content: "| التطبيق | الفائدة |\n|---|---|\n| التوصيات الذكية | زيادة تفاعل الطلاب بمحتوى مخصص |\n| التصحيح الآلي | توفير وقت المعلم للمهام الإبداعية |\n| المتابعة التحليلية | تحديد نقاط الضعف مبكراً |", has_table: true }
-    ],
-    quiz: [
-        {
-            question: "ما هو الهدف الرئيسي من استخدام الذكاء الاصطناعي في التعليم بشكل فعال؟",
-            options: { A: "تقليل عدد المعلمين بالمدارس", B: "تخصيص تجربة التعلم لكل طالب", C: "إلغاء المدارس التقليدية", D: "تسريع وتيرة الامتحانات اليومية" },
-            correct_option: "B",
-            explanation: "الذكاء الاصطناعي يساعد في تقديم محتوى مخصص يناسب كل طالب، لذا (B) هي الإجابة الصحيحة. باقي الخيارات لا تمثل هدفاً تربوياً سليماً."
-        },
-        {
-            question: "أي من الأدوات التالية لا يعتبر تطبيقاً للذكاء الاصطناعي في الفصول الدراسية؟",
-            options: { A: "ألواح الكتابة العادية الخشبية", B: "أنظمة التصحيح التلقائي", C: "روبوتات المحادثة", D: "منصات التعلم التكيفي" },
-            correct_option: "A",
-            explanation: "ألواح الكتابة التقليدية لا تحتوي على أي خوارزميات، على عكس باقي الخيارات التي تعتمد على الذكاء الاصطناعي."
-        },
-        {
-            question: "كيف تساهم البيانات الضخمة في تحسين العملية التعليمية؟",
-            options: { A: "عن طريق تخزين ملايين الكتب فقط", B: "عبر تتبع وتحليل أنماط تعلم الطلاب", C: "من خلال استهلاك مساحة تخزين أكبر", D: "لا تساهم في التعليم" },
-            correct_option: "B",
-            explanation: "تحليل أنماط الطلاب يمكّن الأنظمة من توجيههم وتقديم محتوى متخصص يتوقع تحدياتهم."
-        }
-    ],
-    audio_narrative: "أهلاً بك يا بطل في فصل الذكاء الاصطناعي في التعليم. سنتعرف على كيفية إحداث ثورة في طرق التعلم، من خلال التخصيص التلقائي للمحتوى واستخدام البيانات لتحليل أداء الطلاب وتحسين تجربتهم."
-};
-
-const MOCK_DATA_EN = {
+const DEFAULT_BOOK_EN = {
     metadata: { chapter_title: "AI in Education", key_concepts: ["Machine Learning", "Big Data", "Personalization"] },
     structured_summary: [
         { topic: "Inspiring Introduction", content: "Artificial Intelligence is the simulation of human intelligence processes by machines and computer systems, used to elevate the educational experience.", has_table: false },
         { topic: "Machine Learning Applications", content: "| Application | Benefit |\n|---|---|\n| Smart Recommendations | Increase engagement with tailored content |\n| Automated Grading | Save teacher time for creative tasks |\n| Analytical Tracking | Identify weaknesses early |", has_table: true }
     ],
     quiz: [
-        {
-            question: "What is the primary goal of effectively using AI in education?",
-            options: { A: "Reducing teachers in schools", B: "Personalizing the learning experience", C: "Abolishing traditional schools", D: "Accelerating daily exams" },
-            correct_option: "B",
-            explanation: "AI helps analyze student data to provide tailored content. Thus (B) is correct. The other options do not represent sound educational goals."
-        },
-        {
-            question: "Which of the following is NOT an application of AI in classrooms?",
-            options: { A: "Standard wooden whiteboards", B: "Accurate auto-grading systems", C: "Chatbots for instant answers", D: "Smart adaptive learning platforms" },
-            correct_option: "A",
-            explanation: "Standard whiteboards are traditional tools with no algorithms or machine learning, unlike the other options."
-        },
-        {
-            question: "How does Big Data contribute to improving education?",
-            options: { A: "By storing millions of books", B: "By tracking and analyzing student learning patterns", C: "By consuming more storage", D: "It doesn't contribute to education" },
-            correct_option: "B",
-            explanation: "Analyzing student patterns enables systems to guide students, provide specialized content, and anticipate challenges."
-        }
+        { question: "What is the primary goal of effectively using AI in education?", options: { A: "Reducing teachers in schools", B: "Personalizing the learning experience", C: "Abolishing traditional schools", D: "Accelerating daily exams" }, correct_option: "B", explanation: "AI helps analyze student data to provide tailored content. Thus (B) is correct." },
+        { question: "Which of the following is NOT an AI application in classrooms?", options: { A: "Standard wooden whiteboards", B: "Auto-grading systems", C: "Chatbots for answers", D: "Adaptive learning platforms" }, correct_option: "A", explanation: "Standard whiteboards are traditional tools with no algorithms." },
+        { question: "How does Big Data contribute to improving education?", options: { A: "By storing millions of books", B: "By tracking student learning patterns", C: "By consuming more storage", D: "It doesn't contribute" }, correct_option: "B", explanation: "Analyzing student patterns enables personalized guidance." }
     ],
-    audio_narrative: "Welcome, Champion, to the AI in Education chapter. We will explore how to revolutionize learning through automatic content personalization and data-driven analysis of student performance to create a better educational experience."
+    audio_narrative: "Welcome, Champion, to the AI in Education chapter. We will explore how to revolutionize learning through automatic content personalization and data-driven analysis of student performance."
+};
+
+const DEFAULT_BOOK_AR = {
+    metadata: { chapter_title: "الذكاء الاصطناعي في التعليم", key_concepts: ["تعلم الآلة", "البيانات الضخمة", "التخصيص"] },
+    structured_summary: [
+        { topic: "مقدمة ملهمة", content: "الذكاء الاصطناعي هو قدرة الآلات على محاكاة القدرات الذهنية للبشر للارتقاء بالتجربة التعليمية.", has_table: false },
+        { topic: "تطبيقات التعلم الآلي", content: "| التطبيق | الفائدة |\n|---|---|\n| التوصيات الذكية | زيادة تفاعل الطلاب |\n| التصحيح الآلي | توفير وقت المعلم |\n| المتابعة التحليلية | تحديد نقاط الضعف مبكراً |", has_table: true }
+    ],
+    quiz: [
+        { question: "ما هو الهدف الرئيسي من استخدام الذكاء الاصطناعي في التعليم؟", options: { A: "تقليل عدد المعلمين", B: "تخصيص تجربة التعلم لكل طالب", C: "إلغاء المدارس التقليدية", D: "تسريع الامتحانات" }, correct_option: "B", explanation: "(B) صحيحة لأن الذكاء الاصطناعي يقدم محتوى مخصص لكل طالب." },
+        { question: "أي أداة ليست من تطبيقات الذكاء الاصطناعي؟", options: { A: "ألواح الكتابة الخشبية", B: "أنظمة التصحيح التلقائي", C: "روبوتات المحادثة", D: "منصات التعلم التكيفي" }, correct_option: "A", explanation: "ألواح الكتابة أدوات تقليدية بدون خوارزميات." },
+        { question: "كيف تساهم البيانات الضخمة في التعليم؟", options: { A: "تخزين الكتب فقط", B: "تتبع وتحليل أنماط التعلم", C: "استهلاك مساحة أكبر", D: "لا تساهم" }, correct_option: "B", explanation: "تحليل الأنماط يمكّن من توجيه الطلاب بشكل مخصص." }
+    ],
+    audio_narrative: "أهلاً بك يا بطل في فصل الذكاء الاصطناعي في التعليم. سنتعرف على التخصيص التلقائي واستخدام البيانات لتحليل أداء الطلاب."
 };
 
 // ============================================================
-// i18n STRINGS — UI labels per language
+// DEMO UPLOAD DATA — completely DIFFERENT content loaded on PDF upload
+// ============================================================
+const DEMO_UPLOAD_EN = {
+    metadata: { chapter_title: "Cybersecurity Fundamentals", key_concepts: ["Encryption", "Firewalls", "Phishing", "Two-Factor Authentication"] },
+    structured_summary: [
+        { topic: "What is Cybersecurity?", content: "Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information.", has_table: false },
+        { topic: "Common Cyber Threats", content: "| Threat | Description |\n|---|---|\n| Phishing | Fake emails tricking users into revealing passwords |\n| Ransomware | Malware that locks files until a ransom is paid |\n| Man-in-the-Middle | Attacker intercepts communication between two parties |\n| SQL Injection | Malicious code inserted into database queries |", has_table: true },
+        { topic: "How to Stay Safe", content: "Always use strong, unique passwords. Enable two-factor authentication (2FA) on all accounts. Keep your software updated. Never click suspicious links in emails.", has_table: false }
+    ],
+    quiz: [
+        { question: "What is the primary purpose of encryption?", options: { A: "To make websites load faster", B: "To convert data into unreadable code for unauthorized users", C: "To delete old files automatically", D: "To increase storage space" }, correct_option: "B", explanation: "Encryption converts readable data (plaintext) into unreadable code (ciphertext) so only authorized parties with the decryption key can access it. It does NOT speed up websites or manage storage." },
+        { question: "Which of the following is an example of a phishing attack?", options: { A: "A software update from your operating system", B: "A fake email pretending to be your bank asking for your password", C: "A firewall blocking suspicious traffic", D: "A strong password requirement on a website" }, correct_option: "B", explanation: "Phishing involves deceptive communications (usually emails) that impersonate trusted entities to steal credentials. A real OS update (A), firewall (C), and password rules (D) are legitimate security measures." },
+        { question: "What does Two-Factor Authentication (2FA) provide?", options: { A: "Two different passwords for the same account", B: "An extra layer of security beyond just a password", C: "Automatic virus removal", D: "Faster login speeds" }, correct_option: "B", explanation: "2FA adds a second verification step (like a code sent to your phone) beyond the password. This means even if someone steals your password, they still cannot access your account without the second factor." },
+        { question: "What is a firewall?", options: { A: "A physical wall that protects servers from fire", B: "A network security system that monitors and controls traffic", C: "A type of computer virus", D: "A backup storage device" }, correct_option: "B", explanation: "A firewall is a security system (hardware or software) that monitors incoming and outgoing network traffic and blocks unauthorized access based on security rules." },
+        { question: "Which practice is MOST effective against ransomware?", options: { A: "Using the same password everywhere", B: "Never updating your software", C: "Regularly backing up your data", D: "Disabling your antivirus" }, correct_option: "C", explanation: "Regular backups ensure you can restore your data without paying a ransom. The other options (A, B, D) actually INCREASE your vulnerability to ransomware attacks." }
+    ],
+    audio_narrative: "Welcome to Cybersecurity Fundamentals! In this chapter, we'll explore how to protect yourself online. You'll learn about encryption, firewalls, phishing attacks, and two-factor authentication. Cybersecurity is essential in our digital world — understanding these concepts helps you stay safe from hackers and data breaches. Let's dive in!"
+};
+
+const DEMO_UPLOAD_AR = {
+    metadata: { chapter_title: "أساسيات الأمن السيبراني", key_concepts: ["التشفير", "جدران الحماية", "التصيد الاحتيالي", "المصادقة الثنائية"] },
+    structured_summary: [
+        { topic: "ما هو الأمن السيبراني؟", content: "الأمن السيبراني هو ممارسة حماية الأنظمة والشبكات والبرامج من الهجمات الرقمية التي تهدف للوصول إلى المعلومات الحساسة أو تغييرها أو تدميرها.", has_table: false },
+        { topic: "التهديدات السيبرانية الشائعة", content: "| التهديد | الوصف |\n|---|---|\n| التصيد الاحتيالي | رسائل مزيفة لسرقة كلمات المرور |\n| برامج الفدية | برمجيات تقفل الملفات حتى دفع فدية |\n| هجمات الوسيط | اعتراض الاتصال بين طرفين |\n| حقن SQL | إدخال أكواد خبيثة في قواعد البيانات |", has_table: true },
+        { topic: "كيف تحمي نفسك؟", content: "استخدم كلمات مرور قوية وفريدة. فعّل المصادقة الثنائية على جميع حساباتك. حدّث برامجك باستمرار. لا تضغط على روابط مشبوهة في البريد الإلكتروني.", has_table: false }
+    ],
+    quiz: [
+        { question: "ما هو الغرض الرئيسي من التشفير؟", options: { A: "تسريع تحميل المواقع", B: "تحويل البيانات إلى رموز غير مقروءة للمستخدمين غير المصرح لهم", C: "حذف الملفات القديمة تلقائياً", D: "زيادة مساحة التخزين" }, correct_option: "B", explanation: "التشفير يحوّل البيانات المقروءة إلى رموز لا يمكن فهمها إلا بمفتاح فك التشفير. لا علاقة له بسرعة المواقع أو التخزين." },
+        { question: "أي مما يلي يعتبر هجوم تصيد احتيالي؟", options: { A: "تحديث نظام التشغيل", B: "بريد مزيف يتظاهر بأنه من البنك ويطلب كلمة المرور", C: "جدار حماية يمنع حركة مرور مشبوهة", D: "متطلبات كلمة مرور قوية" }, correct_option: "B", explanation: "التصيد يتضمن رسائل خادعة تنتحل صفة جهات موثوقة لسرقة بياناتك. الخيارات الأخرى إجراءات أمنية حقيقية." },
+        { question: "ماذا توفر المصادقة الثنائية؟", options: { A: "كلمتي مرور مختلفتين", B: "طبقة أمان إضافية فوق كلمة المرور", C: "إزالة الفيروسات تلقائياً", D: "تسجيل دخول أسرع" }, correct_option: "B", explanation: "المصادقة الثنائية تضيف خطوة تحقق ثانية (مثل رمز يُرسل لهاتفك) فحتى لو سُرقت كلمة مرورك، لن يتمكن أحد من الدخول." },
+        { question: "ما هو جدار الحماية (Firewall)؟", options: { A: "جدار مادي يحمي الخوادم من الحريق", B: "نظام أمن شبكي يراقب ويتحكم في حركة البيانات", C: "نوع من الفيروسات", D: "جهاز تخزين احتياطي" }, correct_option: "B", explanation: "جدار الحماية هو نظام أمني يراقب حركة البيانات الواردة والصادرة ويمنع الوصول غير المصرح به." },
+        { question: "ما أفضل ممارسة ضد برامج الفدية؟", options: { A: "استخدام نفس كلمة المرور في كل مكان", B: "عدم تحديث البرامج أبداً", C: "عمل نسخ احتياطية منتظمة للبيانات", D: "تعطيل مضاد الفيروسات" }, correct_option: "C", explanation: "النسخ الاحتياطية المنتظمة تضمن استعادة بياناتك دون دفع فدية. الخيارات الأخرى تزيد من تعرضك للخطر." }
+    ],
+    audio_narrative: "أهلاً بك في فصل أساسيات الأمن السيبراني! سنتعرف على كيفية حماية نفسك من الهجمات الإلكترونية، بما في ذلك التشفير وجدران الحماية وهجمات التصيد والمصادقة الثنائية. فهم هذه المفاهيم ضروري للبقاء آمناً في عالمنا الرقمي."
+};
+
+// ============================================================
+// i18n STRINGS
 // ============================================================
 const I18N = {
     en: {
@@ -104,247 +111,212 @@ const I18N = {
 };
 
 // ============================================================
-// MAIN APP OBJECT
+// MAIN APP
 // ============================================================
 const app = {
-    // --- STATE ---
     state: {
-        lang: "en",             // Current UI language
-        activeBook: null,       // The currently loaded book data object
+        lang: "en",
+        activeBook: null,
         currentQuizIndex: 0,
         score: 0,
         audioPlaying: false,
-        synthInterval: null,
-        utterance: null         // Keep reference to cancel cleanly
+        synthInterval: null
     },
 
-    // ── INIT ──────────────────────────────────────────────────
+    // ── INIT ──────────────────────────────────────────────
     init() {
-        // Set first book as the default active book
-        this.state.activeBook = MOCK_DATA_EN;
+        this.state.activeBook = DEFAULT_BOOK_EN;
         this.applyLanguage();
-        // Wire up the listen-to-question button
+
         document.getElementById("listen-question-btn").addEventListener("click", () => {
             const q = this.state.activeBook.quiz[this.state.currentQuizIndex];
             if (q) this.speakText(q.question);
         });
-        // Wire up play button
+
         document.getElementById("play-summary-btn").addEventListener("click", () => this.toggleAudio());
     },
 
-    // ── LANGUAGE ──────────────────────────────────────────────
+    // ── LANGUAGE ──────────────────────────────────────────
     toggleLanguage() {
         this.state.lang = this.state.lang === "en" ? "ar" : "en";
         document.documentElement.lang = this.state.lang;
         document.documentElement.dir = this.state.lang === "ar" ? "rtl" : "ltr";
         this.stopAudio();
-        // If the active book is one of the built-in mock books, switch language variant
-        if (this.state.activeBook === MOCK_DATA_EN || this.state.activeBook === MOCK_DATA_AR) {
-            this.state.activeBook = this.state.lang === "en" ? MOCK_DATA_EN : MOCK_DATA_AR;
+
+        // Switch built-in books with language — keep uploaded books as-is
+        if (this.state.activeBook === DEFAULT_BOOK_EN || this.state.activeBook === DEFAULT_BOOK_AR) {
+            this.state.activeBook = this.state.lang === "en" ? DEFAULT_BOOK_EN : DEFAULT_BOOK_AR;
+        } else if (this.state.activeBook === DEMO_UPLOAD_EN || this.state.activeBook === DEMO_UPLOAD_AR) {
+            this.state.activeBook = this.state.lang === "en" ? DEMO_UPLOAD_EN : DEMO_UPLOAD_AR;
         }
+        // Custom JSON uploads stay as-is (no language variant)
+
         this.applyLanguage();
-        // Re-render the current screen if it needs it
         if (document.getElementById("study-hub-screen").classList.contains("active")) this.renderStudyHub();
         if (document.getElementById("quiz-screen").classList.contains("active")) this.renderQuestion();
     },
 
     applyLanguage() {
         const t = I18N[this.state.lang];
-        // Update all static labels
         document.querySelectorAll("[data-i18n]").forEach(el => {
             const key = el.getAttribute("data-i18n");
             if (t[key] !== undefined) el.innerText = t[key];
         });
         this.renderHome();
-        // Update dynamic chapter title references
         if (this.state.activeBook) {
             document.getElementById("hub-chapter-title").innerText = this.state.activeBook.metadata.chapter_title;
             document.getElementById("resume-chapter-name").innerText = this.state.activeBook.metadata.chapter_title;
         }
     },
 
-    // ── NAVIGATION ────────────────────────────────────────────
+    // ── NAVIGATION ────────────────────────────────────────
     navigateTo(screenId) {
         this.stopAudio();
         document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-        document.getElementById(`${screenId}-screen`).classList.add("active");
+        document.getElementById(screenId + "-screen").classList.add("active");
         window.scrollTo(0, 0);
         if (screenId === "study-hub") this.renderStudyHub();
     },
 
-    // ── HOME SCREEN ───────────────────────────────────────────
+    // ── HOME ──────────────────────────────────────────────
     renderHome() {
         const t = I18N[this.state.lang];
-        const list = document.getElementById("recent-list");
-        list.innerHTML = t.recentBooks.map(book => `
+        document.getElementById("recent-list").innerHTML = t.recentBooks.map(book => `
             <div class="book-item">
                 <div class="book-icon"><i class="fas fa-file-pdf"></i></div>
                 <div class="book-details">
                     <h4>${book.title}</h4>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width:${book.progress}%"></div>
-                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width:${book.progress}%"></div></div>
                     <span class="progress-text">${book.progress}${t.progressSub}</span>
                 </div>
-            </div>
-        `).join("");
+            </div>`).join("");
     },
 
-    // ── FILE UPLOAD ───────────────────────────────────────────
+    // ── FILE UPLOAD ───────────────────────────────────────
     handleFileUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
-        event.target.value = ""; // allow re-upload of same file
+        event.target.value = "";
 
-        if (file.name.toLowerCase().endsWith(".json")) {
+        const ext = file.name.toLowerCase().split(".").pop();
+
+        if (ext === "json") {
+            // ── JSON Upload: parse and load directly ──
             const reader = new FileReader();
             reader.onload = e => {
                 try {
                     const data = JSON.parse(e.target.result);
                     if (data.metadata && data.structured_summary && data.quiz && data.audio_narrative) {
-                        this.loadBook(data, data.metadata.chapter_title);
+                        this.setActiveBook(data);
                     } else {
-                        this.showAlert(this.state.lang === "ar"
-                            ? "❌ ملف JSON لا يحتوي على الحقول المطلوبة (metadata, structured_summary, quiz, audio_narrative)"
-                            : "❌ JSON file is missing required fields (metadata, structured_summary, quiz, audio_narrative)");
+                        alert(this.state.lang === "ar"
+                            ? "❌ ملف JSON لا يحتوي على الحقول المطلوبة"
+                            : "❌ JSON file missing required fields (metadata, structured_summary, quiz, audio_narrative)");
                     }
                 } catch (err) {
-                    this.showAlert("❌ Error reading JSON: " + err.message);
+                    alert("❌ Error reading JSON: " + err.message);
                 }
             };
             reader.readAsText(file);
 
-        } else if (file.name.toLowerCase().endsWith(".pdf")) {
-            // Simulated PDF processing — in a real app this calls an AI backend
-            this.showProcessingOverlay(true);
+        } else if (ext === "pdf") {
+            // ── PDF Upload: simulate AI processing, load DIFFERENT demo content ──
+            this.showOverlay(true);
             setTimeout(() => {
-                this.showProcessingOverlay(false);
-                // For demo, load the current language mock as the "result"
-                const simulatedResult = this.state.lang === "ar" ? MOCK_DATA_AR : MOCK_DATA_EN;
-                this.loadBook(simulatedResult, file.name.replace(".pdf", ""));
+                this.showOverlay(false);
+                // Load DIFFERENT content (Cybersecurity) so user sees a visible change
+                const demoData = this.state.lang === "ar" ? DEMO_UPLOAD_AR : DEMO_UPLOAD_EN;
+                this.setActiveBook(demoData);
             }, 2000);
 
         } else {
-            this.showAlert(this.state.lang === "ar"
-                ? "يرجى رفع ملف PDF أو JSON"
-                : "Please upload a PDF or JSON file");
+            alert(this.state.lang === "ar" ? "يرجى رفع ملف PDF أو JSON" : "Please upload a PDF or JSON file");
         }
     },
 
-    loadBook(data, titleOverride) {
-        // ★ THIS is the single source of truth for switching books ★
+    // ★ SINGLE function that switches the active book ★
+    setActiveBook(data) {
         this.state.activeBook = data;
         this.state.currentQuizIndex = 0;
         this.state.score = 0;
 
         const t = I18N[this.state.lang];
-        const title = titleOverride || data.metadata.chapter_title;
-        t.recentBooks.unshift({ title, progress: 0 });
+        t.recentBooks.unshift({ title: data.metadata.chapter_title, progress: 0 });
 
         this.renderHome();
-        document.getElementById("resume-chapter-name").innerText = title;
+        document.getElementById("resume-chapter-name").innerText = data.metadata.chapter_title;
         this.navigateTo("study-hub");
     },
 
-    showProcessingOverlay(show) {
-        let overlay = document.getElementById("processing-overlay");
-        if (show) {
-            if (!overlay) {
-                overlay = document.createElement("div");
-                overlay.id = "processing-overlay";
-                overlay.innerHTML = `
-                    <div class="overlay-box">
-                        <div class="spinner"></div>
-                        <p>${this.state.lang === "ar" ? "جاري تحليل الملف..." : "Analyzing file..."}</p>
-                    </div>`;
-                overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;";
-                overlay.querySelector(".overlay-box").style.cssText = "background:white;border-radius:20px;padding:40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;font-family:'Cairo',sans-serif;font-size:1.1rem;font-weight:700;";
-                overlay.querySelector(".spinner").style.cssText = "width:48px;height:48px;border:5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin 0.8s linear infinite;";
-                if (!document.getElementById("spin-style")) {
-                    const style = document.createElement("style");
-                    style.id = "spin-style";
-                    style.textContent = "@keyframes spin{to{transform:rotate(360deg)}}";
-                    document.head.appendChild(style);
-                }
-                document.body.appendChild(overlay);
+    showOverlay(show) {
+        let ov = document.getElementById("processing-overlay");
+        if (show && !ov) {
+            ov = document.createElement("div");
+            ov.id = "processing-overlay";
+            ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center";
+            ov.innerHTML = `<div style="background:#fff;border-radius:20px;padding:40px;text-align:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:1.1rem">
+                <div style="width:48px;height:48px;border:5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px"></div>
+                ${this.state.lang === "ar" ? "جاري تحليل الملف..." : "Analyzing file..."}</div>`;
+            if (!document.getElementById("spin-css")) {
+                const s = document.createElement("style"); s.id = "spin-css";
+                s.textContent = "@keyframes spin{to{transform:rotate(360deg)}}";
+                document.head.appendChild(s);
             }
-        } else {
-            if (overlay) overlay.remove();
-        }
+            document.body.appendChild(ov);
+        } else if (!show && ov) { ov.remove(); }
     },
 
-    showAlert(msg) {
-        alert(msg);
-    },
-
-    // ── STUDY HUB ─────────────────────────────────────────────
+    // ── STUDY HUB ─────────────────────────────────────────
     renderStudyHub() {
         const data = this.state.activeBook;
         if (!data) return;
-
         document.getElementById("hub-chapter-title").innerText = data.metadata.chapter_title;
 
-        const summaryDiv = document.getElementById("summary-content");
         let html = "";
         data.structured_summary.forEach(item => {
-            html += `<h3>${item.topic}</h3>`;
-            html += item.has_table ? marked.parse(item.content) : `<p>${item.content}</p>`;
+            html += "<h3>" + item.topic + "</h3>";
+            html += item.has_table ? marked.parse(item.content) : "<p>" + item.content + "</p>";
         });
-        summaryDiv.innerHTML = html;
+        document.getElementById("summary-content").innerHTML = html;
 
-        // Reset audio player visual state for new book
-        const timelineProgress = document.querySelector(".timeline .progress");
-        if (timelineProgress) timelineProgress.style.width = "0%";
-        const playBtn = document.getElementById("play-summary-btn");
-        if (playBtn) playBtn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
+        // Reset audio bar
+        const bar = document.querySelector(".timeline .progress");
+        if (bar) bar.style.width = "0%";
+        const btn = document.getElementById("play-summary-btn");
+        if (btn) btn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
     },
 
-    // ── AUDIO ─────────────────────────────────────────────────
+    // ── AUDIO ─────────────────────────────────────────────
     toggleAudio() {
-        if (this.state.audioPlaying) {
-            this.stopAudio();
-            return;
-        }
+        if (this.state.audioPlaying) { this.stopAudio(); return; }
 
         const data = this.state.activeBook;
         if (!data || !data.audio_narrative) return;
 
         this.state.audioPlaying = true;
         const btn = document.getElementById("play-summary-btn");
-        const progress = document.querySelector(".timeline .progress");
+        const bar = document.querySelector(".timeline .progress");
         btn.innerHTML = '<i class="fas fa-pause"></i>';
 
         if ("speechSynthesis" in window) {
-            window.speechSynthesis.cancel(); // Cancel any previous
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(data.audio_narrative);
+            u.lang = I18N[this.state.lang].speechLang;
+            u.rate = 0.9;
+            u.onend = () => { this.stopAudio(); if (bar) bar.style.width = "100%"; };
+            u.onerror = () => this.stopAudio();
+            window.speechSynthesis.speak(u);
 
-            const utterance = new SpeechSynthesisUtterance(data.audio_narrative);
-            utterance.lang = I18N[this.state.lang].speechLang;
-            utterance.rate = 0.9;
-            this.state.utterance = utterance;
-
-            utterance.onend = () => {
-                this.stopAudio();
-                if (progress) progress.style.width = "100%";
-            };
-            utterance.onerror = () => this.stopAudio();
-
-            window.speechSynthesis.speak(utterance);
-
-            // Visual progress bar simulation
             let w = 0;
-            const totalMs = data.audio_narrative.length * 65; // rough estimate
-            const step = 100 / (totalMs / 100);
+            const step = 100 / (data.audio_narrative.length * 0.65);
             this.state.synthInterval = setInterval(() => {
-                w = Math.min(w + step, 99); // cap at 99 until onend fires
-                if (progress) progress.style.width = w + "%";
+                w = Math.min(w + step, 99);
+                if (bar) bar.style.width = w + "%";
             }, 100);
-
         } else {
-            // Fallback: just animate bar without TTS
             let w = 0;
             this.state.synthInterval = setInterval(() => {
-                w += 1.5;
-                if (progress) progress.style.width = w + "%";
+                w += 1.5; if (bar) bar.style.width = w + "%";
                 if (w >= 100) this.stopAudio();
             }, 100);
         }
@@ -352,10 +324,8 @@ const app = {
 
     stopAudio() {
         this.state.audioPlaying = false;
-        clearInterval(this.state.synthInterval);
-        this.state.synthInterval = null;
+        clearInterval(this.state.synthInterval); this.state.synthInterval = null;
         if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-        this.state.utterance = null;
         const btn = document.getElementById("play-summary-btn");
         if (btn) btn.innerHTML = '<i class="fas fa-play directional-icon"></i>';
     },
@@ -369,18 +339,16 @@ const app = {
         }
     },
 
-    // ── QUIZ ──────────────────────────────────────────────────
+    // ── QUIZ ──────────────────────────────────────────────
     startQuiz() {
         const data = this.state.activeBook;
         if (!data || !data.quiz || data.quiz.length === 0) {
-            this.showAlert(this.state.lang === "ar" ? "لا توجد أسئلة في هذا الكتاب" : "No quiz questions found for this book.");
+            alert(this.state.lang === "ar" ? "لا توجد أسئلة" : "No quiz questions found.");
             return;
         }
         this.state.currentQuizIndex = 0;
         this.state.score = 0;
-        // Hide feedback modal first
-        const modal = document.getElementById("feedback-modal");
-        modal.className = "feedback-modal";
+        document.getElementById("feedback-modal").className = "feedback-modal";
         this.navigateTo("quiz");
         this.renderQuestion();
     },
@@ -390,105 +358,81 @@ const app = {
         const t = I18N[this.state.lang];
         if (!data || !data.quiz) return;
 
-        const qIndex = this.state.currentQuizIndex;
+        const idx = this.state.currentQuizIndex;
         const total = data.quiz.length;
-        const questionData = data.quiz[qIndex];
-        if (!questionData) return;
+        const q = data.quiz[idx];
+        if (!q) return;
 
-        // Header counters
-        document.getElementById("quiz-counter").innerText = `${qIndex + 1} / ${total}`;
-        document.getElementById("quiz-progress").style.width = `${(qIndex / total) * 100}%`;
-
-        // Reset modal + next button
+        document.getElementById("quiz-counter").innerText = (idx + 1) + " / " + total;
+        document.getElementById("quiz-progress").style.width = (idx / total * 100) + "%";
         document.getElementById("next-question-btn").style.display = "none";
         document.getElementById("feedback-modal").className = "feedback-modal";
 
-        // Question text with slide-in animation
-        const qTextEl = document.getElementById("quiz-question-text");
-        qTextEl.innerText = questionData.question;
-        qTextEl.parentElement.classList.remove("slide-in");
-        void qTextEl.parentElement.offsetWidth; // force reflow
-        qTextEl.parentElement.classList.add("slide-in");
+        const qEl = document.getElementById("quiz-question-text");
+        qEl.innerText = q.question;
+        qEl.parentElement.classList.remove("slide-in");
+        void qEl.parentElement.offsetWidth;
+        qEl.parentElement.classList.add("slide-in");
 
-        // Options
-        const optContainer = document.getElementById("quiz-options");
-        optContainer.innerHTML = "";
-        optContainer.classList.remove("slide-in");
-        void optContainer.offsetWidth;
-        optContainer.classList.add("slide-in");
+        const opts = document.getElementById("quiz-options");
+        opts.innerHTML = "";
+        opts.classList.remove("slide-in");
+        void opts.offsetWidth;
+        opts.classList.add("slide-in");
 
-        Object.entries(questionData.options).forEach(([key, val], idx) => {
+        Object.entries(q.options).forEach(([key, val], i) => {
             const btn = document.createElement("button");
             btn.className = "option-btn";
-            btn.style.animationDelay = `${idx * 0.08}s`;
-            btn.innerHTML = `<span class="opt-letter">${key}</span><span>${val}</span>`;
-            btn.addEventListener("click", () => this.handleAnswer(key, btn, questionData));
-            optContainer.appendChild(btn);
+            btn.style.animationDelay = (i * 0.08) + "s";
+            btn.innerHTML = '<span class="opt-letter">' + key + '</span><span>' + val + '</span>';
+            btn.addEventListener("click", () => this.handleAnswer(key, btn, q));
+            opts.appendChild(btn);
         });
 
-        // Next button handler (fresh assignment each question)
-        const nextBtn = document.getElementById("next-question-btn");
-        nextBtn.onclick = () => {
-            if (this.state.currentQuizIndex < total - 1) {
-                this.state.currentQuizIndex++;
-                this.renderQuestion();
-            } else {
+        document.getElementById("next-question-btn").onclick = () => {
+            if (idx < total - 1) { this.state.currentQuizIndex++; this.renderQuestion(); }
+            else {
                 document.getElementById("quiz-progress").style.width = "100%";
-                setTimeout(() => {
-                    this.showAlert(`${t.completedMsg}${this.state.score} / ${total}`);
-                    this.navigateTo("home");
-                }, 400);
+                setTimeout(() => { alert(t.completedMsg + this.state.score + " / " + total); this.navigateTo("home"); }, 400);
             }
         };
     },
 
-    handleAnswer(selectedKey, btnElement, questionData) {
-        // Block if already answered
-        const buttons = document.querySelectorAll(".option-btn");
-        if ([...buttons].some(b => b.classList.contains("disabled"))) return;
+    handleAnswer(key, btnEl, q) {
+        const btns = document.querySelectorAll(".option-btn");
+        if ([...btns].some(b => b.classList.contains("disabled"))) return;
+        btns.forEach(b => b.classList.add("disabled"));
 
-        // Disable all options
-        buttons.forEach(b => b.classList.add("disabled"));
-
-        const isCorrect = selectedKey === questionData.correct_option;
+        const correct = key === q.correct_option;
         const t = I18N[this.state.lang];
 
-        if (isCorrect) {
-            btnElement.classList.add("selected-correct");
+        if (correct) {
+            btnEl.classList.add("selected-correct");
             this.state.score++;
-            this.showFeedback(true, t.excellent, questionData.explanation);
+            this.showFeedback(true, t.excellent, q.explanation);
         } else {
-            btnElement.classList.add("selected-wrong");
-            // Highlight correct button after short delay
+            btnEl.classList.add("selected-wrong");
             setTimeout(() => {
-                const correctBtn = [...buttons].find(b =>
-                    b.querySelector(".opt-letter")?.innerText === questionData.correct_option
-                );
-                if (correctBtn) correctBtn.classList.add("selected-correct");
+                const cb = [...btns].find(b => b.querySelector(".opt-letter")?.innerText === q.correct_option);
+                if (cb) cb.classList.add("selected-correct");
             }, 300);
-            this.showFeedback(false, `${t.goodTry} (${questionData.correct_option})`, questionData.explanation);
+            this.showFeedback(false, t.goodTry + " (" + q.correct_option + ")", q.explanation);
         }
 
-        // Show next button and update progress
         document.getElementById("next-question-btn").style.display = "flex";
         const total = this.state.activeBook.quiz.length;
-        document.getElementById("quiz-progress").style.width = `${((this.state.currentQuizIndex + 1) / total) * 100}%`;
+        document.getElementById("quiz-progress").style.width = ((this.state.currentQuizIndex + 1) / total * 100) + "%";
     },
 
-    showFeedback(isCorrect, title, explanation) {
+    showFeedback(ok, title, explanation) {
         setTimeout(() => {
-            const modal = document.getElementById("feedback-modal");
-            modal.className = `feedback-modal show ${isCorrect ? "correct" : "wrong"}`;
-            document.getElementById("feedback-icon").innerHTML = isCorrect
-                ? '<i class="fas fa-check-circle"></i>'
-                : '<i class="fas fa-times-circle"></i>';
+            const m = document.getElementById("feedback-modal");
+            m.className = "feedback-modal show " + (ok ? "correct" : "wrong");
+            document.getElementById("feedback-icon").innerHTML = ok ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>';
             document.getElementById("feedback-title").innerText = title;
             document.getElementById("feedback-explanation").innerText = explanation;
         }, 250);
     }
 };
 
-// ── BOOTSTRAP ─────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-    app.init();
-});
+document.addEventListener("DOMContentLoaded", () => app.init());
