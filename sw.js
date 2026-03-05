@@ -1,4 +1,4 @@
-const CACHE_NAME = 'learnhub-v1';
+const CACHE_NAME = 'learnhub-v3'; // bumped — forces old cache to be cleared
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
